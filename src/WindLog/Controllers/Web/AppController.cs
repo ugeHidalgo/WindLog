@@ -6,8 +6,16 @@ namespace WindLog.Controllers.Web
 {
     public class AppController : Controller
     {
-        // GET: /<controller>/
         public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult Contact()
+        {
+            return View();
+        }
+        public IActionResult About()
         {
             return View();
         }
