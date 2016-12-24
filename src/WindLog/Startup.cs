@@ -4,24 +4,32 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Mvc;
 using WindLog.Models;
+using Microsoft.Framework.Configuration;
 
 namespace WindLog
 {
     public class Startup
     {
         private IHostingEnvironment _env;
+        private IConfigurationRoot _config;
 
         public Startup( IHostingEnvironment env)
         {
             _env = env;
+
+            //Para la carga del fichero de configuracion config.json
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath) //Donde esta el fichero
+                .AddJsonFile("config.json");
+
+            _config = builder.Build();
         }
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddSingleton(_config);
             services.AddDbContext<WindlogContext>();
-
             services.AddMvc(config =>
             {
                 if (_env.IsProduction())
