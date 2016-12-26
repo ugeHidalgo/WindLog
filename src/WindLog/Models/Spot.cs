@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace WindLog.Models
 {
@@ -13,5 +14,9 @@ namespace WindLog.Models
         public double Long { get; set; }
         public DateTime Created { get; set; }        
         public string Memo { get; set; }
+
+        #region Relations
+        public ICollection<Session> Sessions { get; set; }
+        #endregion
     }
 }

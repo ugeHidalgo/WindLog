@@ -30,6 +30,7 @@ namespace WindLog
         {
             services.AddSingleton(_config);
             services.AddDbContext<WindlogContext>();
+            services.AddTransient<WindlogContextSeedData>();
             services.AddMvc(config =>
             {
                 if (_env.IsProduction())
@@ -40,7 +41,8 @@ namespace WindLog
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory,
+            WindlogContextSeedData seeder)
         {
             loggerFactory.AddConsole();
 
@@ -61,6 +63,8 @@ namespace WindLog
                     defaults: new { controller = "App", action = "Index" } //Página de inicio por defecto
                     );
             });
-        }
+
+            seeder.SeedData().Wait();
+         }
     }
 }
