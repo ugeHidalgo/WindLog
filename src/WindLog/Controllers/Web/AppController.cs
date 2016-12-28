@@ -9,13 +9,13 @@ namespace WindLog.Controllers.Web
 {
     public class AppController : Controller
     {
-        private WindlogContext _context;
+        private IWindlogRepository _repository;
         private IConfigurationRoot _config;
 
-        public AppController(IConfigurationRoot config, WindlogContext context)
+        public AppController(IConfigurationRoot config, IWindlogRepository repository )
         {
             _config = config;
-            _context = context;
+            _repository = repository;
         }
 
         public IActionResult Index()
@@ -34,7 +34,7 @@ namespace WindLog.Controllers.Web
 
         public IActionResult Sessions()
         {
-            var data = _context.Sessions.ToList();
+            var data = _repository.GetAllSessions();
             return View(data);
         }
 

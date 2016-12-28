@@ -1,7 +1,18 @@
-﻿@{
+﻿@*@Model IEnumerable<WindLog.Models.Session>*@
+@{
     ViewBag.Title = "Sessions Page";
 }
 
 <h1>Sessions</h1>
 
 <h2>Under construction !!!</h2>
+
+
+    <div class="col-md-6">
+        <ul>
+            @foreach (var session in Model)
+            {
+                <li>@session.SessionDate.ToString("d") -- @session.Name</li>                
+            }
+        </ul>
+    </div>

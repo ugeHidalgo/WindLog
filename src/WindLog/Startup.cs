@@ -30,6 +30,7 @@ namespace WindLog
         {
             services.AddSingleton(_config);
             services.AddDbContext<WindlogContext>();
+            services.AddScoped<IWindlogRepository, WindlogRepository>();
             services.AddTransient<WindlogContextSeedData>();
             services.AddMvc(config =>
             {
