@@ -16,7 +16,7 @@ namespace WindLog.Models
         public string Memo { get; set; }
 
         #region Relations
-        public ICollection<Session> Sessions { get; set; }
+        //public ICollection<Session> Sessions { get; set; }
         #endregion
     }
 }

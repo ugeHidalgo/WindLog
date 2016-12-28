@@ -15,10 +15,11 @@ namespace WindLog.Models
         }
 
         public async Task SeedData()
-        {            
+        {
             await SeedMaterialTypesData();
             await SeedMaterialsData();
-            await SeedSpotsAndSessionsData();            
+            await SeedSpotsAndSessionsData();
+            await SeedSessionsData();
         }
 
 
@@ -80,8 +81,6 @@ namespace WindLog.Models
 
             if (!_context.Spots.Any())
             {
-                var materials = _context.Materials;
-
                 var torre = new Spot() { Name = "Torrenueva", City = "Torrenueva", Province = "Granada", Country = "España", Created = DateTime.Now, Memo = "" };
                 var rules = new Spot() { Name = "Rules", City = "", Province = "Granada", Country = "España", Created = DateTime.Now, Memo = "Embalse de Rules." };
                 var playaGranada = new Spot() { Name = "PlayaGranada", City = "Motril", Province = "Granada", Country = "España", Created = DateTime.Now, Memo = "" };
@@ -89,7 +88,7 @@ namespace WindLog.Models
                 var valde = new Spot() { Name = "Valdevaqueros", City = "Tarifa", Province = "Cádiz", Country = "España", Created = DateTime.Now, Memo = "" };
                 var lances = new Spot() { Name = "Los Lances Norte", City = "Tarifa", Province = "Cádiz", Country = "España", Created = DateTime.Now, Memo = "" };
                 var victor = new Spot() { Name = "Victor Center(Almerimar)", City = "El Ejido", Province = "Almería", Country = "España", Created = DateTime.Now, Memo = "" };
-                var marAzul = new Spot() { Name = "Mar Azul(Almerimar", City = "El Ejido", Province = "Almería", Country = "España", Created = DateTime.Now, Memo = "" };
+                var marAzul = new Spot() { Name = "Mar Azul(Almerimar)", City = "El Ejido", Province = "Almería", Country = "España", Created = DateTime.Now, Memo = "" };
                 var pinchos = new Spot() { Name = "Los Pinchos(Almerimar)", City = "El Ejido", Province = "Almería", Country = "España", Created = DateTime.Now, Memo = "" };
 
                 _context.Spots.Add(torre);
@@ -103,70 +102,14 @@ namespace WindLog.Models
                 _context.Spots.Add(pinchos);
 
                 var sessions = new List<Session>() {
-                new Session() { Name = "Rules1", Spot = rules, SessionDate = new DateTime(2016,5,1),
-                    Materials = new List<Material> {
-                        materials.FirstOrDefault(x=>x.Name=="Titan"),
-                        materials.FirstOrDefault(x=>x.Name=="P7Sado59"),
-                        materials.FirstOrDefault(x=>x.Name=="P400RDM"),
-                        materials.FirstOrDefault(x=>x.Name=="B3140")
-                    }
-                },
-                new Session() { Name = "TorreNueva1", Spot = torre, SessionDate = new DateTime(2016,5,2),
-                    Materials = new List<Material> {
-                        materials.FirstOrDefault(x=>x.Name=="Titan"),
-                        materials.FirstOrDefault(x=>x.Name=="P7Sado59"),
-                        materials.FirstOrDefault(x=>x.Name=="P400RDM"),
-                        materials.FirstOrDefault(x=>x.Name=="B3140")
-                    }
-                },
-                new Session() { Name = "Ponderosa1", Spot = ponde, SessionDate = new DateTime(2016,5,13),
-                    Materials = new List<Material> {
-                        materials.FirstOrDefault(x=>x.Name=="Titan"),
-                        materials.FirstOrDefault(x=>x.Name=="P7Slash52"),
-                        materials.FirstOrDefault(x=>x.Name=="P400RDM"),
-                        materials.FirstOrDefault(x=>x.Name=="B3140")
-                    }
-                },
-                new Session() { Name = "PlayaGranada1", Spot = playaGranada, SessionDate = new DateTime(2016,5,20),
-                    Materials = new List<Material> {
-                        materials.FirstOrDefault(x=>x.Name=="Titan"),
-                        materials.FirstOrDefault(x=>x.Name=="P7Sado59"),
-                        materials.FirstOrDefault(x=>x.Name=="P400RDM"),
-                        materials.FirstOrDefault(x=>x.Name=="B3140")
-                    }
-                },
-                new Session() { Name = "Rules2", Spot = rules, SessionDate = new DateTime(2016,5,21),
-                    Materials = new List<Material> {
-                        materials.FirstOrDefault(x=>x.Name=="Titan"),
-                        materials.FirstOrDefault(x=>x.Name=="P7Sado59"),
-                        materials.FirstOrDefault(x=>x.Name=="P400RDM"),
-                        materials.FirstOrDefault(x=>x.Name=="B3140")
-                    }
-                },
-                new Session() { Name = "Valdevaqueros1", Spot = valde, SessionDate = new DateTime(2016,5,26),
-                    Materials = new List<Material> {
-                        materials.FirstOrDefault(x=>x.Name=="Titan"),
-                        materials.FirstOrDefault(x=>x.Name=="P7Sado59"),
-                        materials.FirstOrDefault(x=>x.Name=="P400RDM"),
-                        materials.FirstOrDefault(x=>x.Name=="B3140")
-                    }
-                },
-                new Session() { Name = "Valdevaqueros2", Spot = valde, SessionDate = new DateTime(2016,5,27),
-                    Materials = new List<Material> {
-                        materials.FirstOrDefault(x=>x.Name=="Titan"),
-                        materials.FirstOrDefault(x=>x.Name=="P7Sado59"),
-                        materials.FirstOrDefault(x=>x.Name=="P400RDM"),
-                        materials.FirstOrDefault(x=>x.Name=="B3140")
-                    }
-                },
-                new Session() { Name = "Ponderosa2", Spot = ponde, SessionDate = new DateTime(2016,5,29),
-                    Materials = new List<Material> {
-                        materials.FirstOrDefault(x=>x.Name=="Rocket95"),
-                        materials.FirstOrDefault(x=>x.Name=="P7Slash52"),
-                        materials.FirstOrDefault(x=>x.Name=="P400RDM"),
-                        materials.FirstOrDefault(x=>x.Name=="B3140")
-                    }
-                }
+                new Session() { Name = "Rules1", Spot = rules, SessionDate = new DateTime(2016,5,1) },
+                new Session() { Name = "TorreNueva1", Spot = torre, SessionDate = new DateTime(2016,5,2) },
+                new Session() { Name = "Ponderosa1", Spot = ponde, SessionDate = new DateTime(2016,5,13) },
+                new Session() { Name = "PlayaGranada1", Spot = playaGranada, SessionDate = new DateTime(2016,5,20) },
+                new Session() { Name = "Rules2", Spot = rules, SessionDate = new DateTime(2016,5,21) },
+                new Session() { Name = "Valdevaqueros1", Spot = valde, SessionDate = new DateTime(2016,5,26) },
+                new Session() { Name = "Valdevaqueros2", Spot = valde, SessionDate = new DateTime(2016,5,27) },
+                new Session() { Name = "Ponderosa2", Spot = ponde, SessionDate = new DateTime(2016,5,29) }
             };
 
                 foreach (var session in sessions)
@@ -175,8 +118,63 @@ namespace WindLog.Models
                 }
                 await _context.SaveChangesAsync();
             }
-        }        
+        }
 
+        private async Task SeedSessionsData()
+        {
+
+            if (!_context.SessionMaterials.Any())
+            {
+                var titan = _context.Materials.FirstOrDefault(x => x.Name == "Titan");
+                var rocket = _context.Materials.FirstOrDefault(x => x.Name == "Rocket95");
+                var rrdQuad = _context.Materials.FirstOrDefault(x => x.Name == "RRDQuad");
+                var hotSails = _context.Materials.FirstOrDefault(x => x.Name == "HotSails42");
+                var gaMa = _context.Materials.FirstOrDefault(x => x.Name == "GaMa47");
+                var p7Slash = _context.Materials.FirstOrDefault(x => x.Name == "P7Slash52");
+                var p7Sado = _context.Materials.FirstOrDefault(x => x.Name == "P7Sado59");
+                var gaCr = _context.Materials.FirstOrDefault(x => x.Name == "GaCr64");
+                var n370 = _context.Materials.FirstOrDefault(x => x.Name == "N370SDM");
+                var p400 = _context.Materials.FirstOrDefault(x => x.Name == "P400RDM");
+                var g430 = _context.Materials.FirstOrDefault(x => x.Name == "G430RDM");
+                var b3140 = _context.Materials.FirstOrDefault(x => x.Name == "B3140");
+                var b3160 = _context.Materials.FirstOrDefault(x => x.Name == "B3160");
+
+                var rules1 = _context.Sessions.FirstOrDefault(x => x.Name == "Rules1");
+                var rules2 = _context.Sessions.FirstOrDefault(x => x.Name == "Rules2");
+                var torre1 = _context.Sessions.FirstOrDefault(x => x.Name == "Torrenueva1");
+                var ponde1 = _context.Sessions.FirstOrDefault(x => x.Name == "Ponderosa1");
+                var ponde2 = _context.Sessions.FirstOrDefault(x => x.Name == "Ponderosa2");
+                var playaGr1 = _context.Sessions.FirstOrDefault(x => x.Name == "PlayaGranada1");
+                var valde1 = _context.Sessions.FirstOrDefault(x => x.Name == "Valdevaqueros1");
+                var valde2 = _context.Sessions.FirstOrDefault(x => x.Name == "Valdevaqueros2");
+
+                AddMaterialsToSession(_context, rules1,new Material[] { titan, p7Sado, p400, b3140 });
+                AddMaterialsToSession(_context, torre1, new Material[] { titan, p7Sado, p400, b3140 });
+                AddMaterialsToSession(_context, ponde1, new Material[] { titan, p7Slash, p400, b3140 });
+                AddMaterialsToSession(_context, playaGr1, new Material[] { titan, p7Sado, p400, b3140 });
+                AddMaterialsToSession(_context, rules2, new Material[] { titan, p7Sado, p400, b3140 });
+                AddMaterialsToSession(_context, valde1, new Material[] { titan, p7Sado, p400, b3140 });
+                AddMaterialsToSession(_context, valde2, new Material[] { titan, p7Sado, p400, b3140 });
+                AddMaterialsToSession(_context, ponde2, new Material[] { rocket, p7Slash, p400, b3140 });
+
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        private void AddMaterialsToSession(WindlogContext _context, Session session, Material[] materials)
+        {
+            foreach (var material in materials)
+            {
+                _context.SessionMaterials.Add(
+                   new SessionMaterials
+                   {
+                       SessionId = session.Id,
+                       Session = session,
+                       MaterialId = material.Id,
+                       Material = material
+                   });
+            }
+        }
         #endregion
     }
 }

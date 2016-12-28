@@ -35,15 +35,11 @@ namespace WindLog.Migrations
 
                     b.Property<DateTime>("Purchase");
 
-                    b.Property<int?>("SessionId");
-
                     b.Property<int>("Year");
 
                     b.HasKey("Id");
 
                     b.HasIndex("MaterialTypeId");
-
-                    b.HasIndex("SessionId");
 
                     b.ToTable("Materials");
                 });
@@ -86,6 +82,21 @@ namespace WindLog.Migrations
                     b.ToTable("Sessions");
                 });
 
+            modelBuilder.Entity("WindLog.Models.SessionMaterials", b =>
+                {
+                    b.Property<int>("SessionId");
+
+                    b.Property<int>("MaterialId");
+
+                    b.HasKey("SessionId", "MaterialId");
+
+                    b.HasIndex("MaterialId");
+
+                    b.HasIndex("SessionId");
+
+                    b.ToTable("SessionMaterials");
+                });
+
             modelBuilder.Entity("WindLog.Models.Spot", b =>
                 {
                     b.Property<int>("Id")
@@ -115,19 +126,28 @@ namespace WindLog.Migrations
             modelBuilder.Entity("WindLog.Models.Material", b =>
                 {
                     b.HasOne("WindLog.Models.MaterialType", "MaterialType")
-                        .WithMany("Materials")
+                        .WithMany()
                         .HasForeignKey("MaterialTypeId");
-
-                    b.HasOne("WindLog.Models.Session")
-                        .WithMany("Materials")
-                        .HasForeignKey("SessionId");
                 });
 
             modelBuilder.Entity("WindLog.Models.Session", b =>
                 {
                     b.HasOne("WindLog.Models.Spot", "Spot")
-                        .WithMany("Sessions")
+                        .WithMany()
                         .HasForeignKey("SpotId");
+                });
+
+            modelBuilder.Entity("WindLog.Models.SessionMaterials", b =>
+                {
+                    b.HasOne("WindLog.Models.Material", "Material")
+                        .WithMany("SessionMaterials")
+                        .HasForeignKey("MaterialId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("WindLog.Models.Session", "Session")
+                        .WithMany("SessionMaterials")
+                        .HasForeignKey("SessionId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
         }
     }

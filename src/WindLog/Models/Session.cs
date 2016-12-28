@@ -13,7 +13,8 @@ namespace WindLog.Models
 
         #region relations
         public Spot Spot { get; set; }
-        public ICollection<Material> Materials { get; set; }
+        public ICollection<SessionMaterials> SessionMaterials { get; set; }
+
         #endregion
     }
 }

@@ -1,7 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace WindLog.Models
 {
@@ -16,22 +14,23 @@ namespace WindLog.Models
 
         public IEnumerable<Material> GetAllMaterials()
         {
-            return _context.Materials.ToList();
+            return _context.Materials.Include(x=>x.MaterialType);            
         }
 
         public IEnumerable<MaterialType> GetAllMaterialTypes()
         {
-            return _context.MaterialTypes.ToList();
+            return _context.MaterialTypes;
         }
 
         public IEnumerable<Session> GetAllSessions()
         {
-            return _context.Sessions.ToList();
+            var data = _context.Sessions.Include(x => x.Spot);
+            return data;
         }
 
         public IEnumerable<Spot> GetAllSpots()
         {
-            return _context.Spots.ToList();
+            return _context.Spots;
         }
     }
 }

@@ -11,7 +11,7 @@ namespace WindLog.Models
         public string Memo { get; set; }
 
         #region relations
-        public ICollection<Material> Materials { get; set; }
+        //public ICollection<Material> Materials { get; set; }
         #endregion
     }
 }
