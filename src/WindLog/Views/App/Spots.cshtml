@@ -5,3 +5,12 @@
 <h1>Spots</h1>
 
 <h2>Under construction !!!</h2>
+
+<div class="col-md-6">
+    <ul>
+        @foreach (var spot in Model)
+            {
+            <li>@spot.Name / @spot.City / @spot.Province</li>
+        }
+    </ul>
+</div>

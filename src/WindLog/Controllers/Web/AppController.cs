@@ -40,17 +40,20 @@ namespace WindLog.Controllers.Web
 
         public IActionResult Spots()
         {
-            return View();
+            var data = _repository.GetAllSpots();
+            return View(data);
         }
 
         public IActionResult Materials()
         {
-            return View();
+            var data = _repository.GetAllMaterials();
+            return View(data);
         }
 
         public IActionResult MaterialTypes()
         {
-            return View();
+            var data = _repository.GetAllMaterialTypes();
+            return View(data);
         }
     }
 }

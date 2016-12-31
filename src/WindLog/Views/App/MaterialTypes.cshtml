@@ -5,3 +5,13 @@
 <h1>Material Types</h1>
 
 <h2>Under construction !!!</h2>
+
+
+<div class="col-md-6">
+    <ul>
+        @foreach (var materialType in Model)
+            {
+            <li>@materialType.Created.ToString("d") @materialType.Name</li>
+        }
+    </ul>
+</div>
