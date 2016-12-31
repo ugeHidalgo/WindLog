@@ -24,7 +24,6 @@ namespace WindLog.Controllers.API
             try
             {
                 IEnumerable<Session> data = _repository.GetAllSessions();
-                //return Ok(Mapper.Map<IEnumerable<TripViewModel>>(data));
                 return Ok(data);
             }
             catch (Exception ex)

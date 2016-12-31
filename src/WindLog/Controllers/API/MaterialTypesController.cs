@@ -25,7 +25,6 @@ namespace WindLog.Controllers.API
             try
             {
                 IEnumerable<MaterialType> data = _repository.GetAllMaterialTypes();
-                //return Ok(Mapper.Map<IEnumerable<TripViewModel>>(data));
                 return Ok(data);
             }
             catch (Exception ex)

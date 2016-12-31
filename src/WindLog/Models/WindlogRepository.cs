@@ -15,7 +15,7 @@ namespace WindLog.Models
 
         public IEnumerable<Material> GetAllMaterials()
         {
-            return _context.Materials.Include(x=>x.MaterialType);            
+            return _context.Materials.Include(x => x.MaterialType);
         }
 
         public IEnumerable<MaterialType> GetAllMaterialTypes()
@@ -28,7 +28,11 @@ namespace WindLog.Models
             var data = _context.Sessions.Include(x => x.Spot);
             foreach (var session in data)
             {
-                session.SessionMaterials = _context.SessionMaterials.Where(x => x.SessionId == session.Id).ToList();                
+                session.SessionMaterials = _context.SessionMaterials
+                    .Where(x => x.SessionId == session.Id)
+                    .Include(x => x.Material)
+                    .Include(x => x.Material.MaterialType)
+                    .ToList();
             }            
             return data;
         }
