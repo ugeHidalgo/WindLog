@@ -12,7 +12,13 @@
         <ul>
             @foreach (var session in Model)
             {
-                <li>@session.SessionDate.ToString("d") -- @session.Name</li>                
+                <li>(@session.SessionDate.ToString("d")-@session.Spot.Name) @session.Name </li>
+                <ul>
+                    @foreach (var material in @session.SessionMaterials)
+                    {
+                        <li>@material.MaterialId </li>
+                    }
+                </ul>
             }
         </ul>
     </div>

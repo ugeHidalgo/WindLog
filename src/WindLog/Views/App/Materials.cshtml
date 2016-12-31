@@ -10,7 +10,7 @@
     <ul>
         @foreach (var material in Model)
             {
-            <li>@material.Name / @material.Brand / @material.Model</li>
+            <li>(@material.MaterialType.Name) @material.Name / @material.Brand / @material.Model</li>
         }
     </ul>
 </div>

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace WindLog.Models
 {
@@ -25,6 +26,10 @@ namespace WindLog.Models
         public IEnumerable<Session> GetAllSessions()
         {
             var data = _context.Sessions.Include(x => x.Spot);
+            foreach (var session in data)
+            {
+                session.SessionMaterials = _context.SessionMaterials.Where(x => x.SessionId == session.Id).ToList();                
+            }            
             return data;
         }
 
