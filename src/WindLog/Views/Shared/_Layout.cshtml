@@ -40,18 +40,26 @@
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li>
-                            <a asp-controller="App" asp-action="About"
-                               class="glyphicon glyphicon-comment">
+                            <a asp-controller="App" asp-action="UserProfile"
+                               class="glyphicon glyphicon-user">
                                 @User.Identity.Name
-                            </a>                           
+                            </a>
                         </li>
                         <li>
-                            <a asp-controller="Auth" asp-action="Logout">Logout</a>
+                            <a asp-controller="Auth" asp-action="Logout"
+                               class="glyphicon glyphicon-log-out">
+                                Logout
+                            </a>
                         </li>
                     }
                     else
                     {
-                        <li><a asp-controller="Auth" asp-action="Login">Login</a></li>
+                        <li>
+                            <a asp-controller="Auth" asp-action="Login" 
+                               class="glyphicon glyphicon-log-in">
+                                Login
+                            </a>
+                        </li>
                     }
                 </ul>
             </div>

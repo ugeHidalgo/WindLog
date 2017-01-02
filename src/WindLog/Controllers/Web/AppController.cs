@@ -33,6 +33,11 @@ namespace WindLog.Controllers.Web
             return View();
         }
 
+        public IActionResult UserProfile()
+        {
+            return View();
+        }
+
         [Authorize]
         public IActionResult Sessions()
         {
