@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Mvc;
 using WindLog.Models;
 using Microsoft.Framework.Configuration;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace WindLog
 {
@@ -29,6 +30,13 @@ namespace WindLog
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton(_config);
+            services.AddIdentity<WindlogUser, IdentityRole>(config =>
+            {
+                config.User.RequireUniqueEmail = true;
+                config.Password.RequiredLength = 8;
+                config.Cookies.ApplicationCookie.LoginPath = "/Auth/Login";
+            }).AddEntityFrameworkStores<WindlogContext>();//Añade identity al context, ya que es donde se almacenará.
+
             services.AddDbContext<WindlogContext>();
             services.AddScoped<IWindlogRepository, WindlogRepository>();
             services.AddTransient<WindlogContextSeedData>();
@@ -53,11 +61,9 @@ namespace WindLog
             }
 
             app.UseStaticFiles();
-
-            //Para que haga uso de MVC y así valla a index.cshtml
-
+            app.UseIdentity();            
             app.UseMvc(config =>
-            {
+            {//Para que haga uso de MVC y así valla a index.cshtml
                 config.MapRoute(
                     name: "Default",
                     template: "{controller}/{action}/{id?}",

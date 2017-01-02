@@ -8,9 +8,10 @@ using WindLog.Models;
 namespace WindLog.Migrations
 {
     [DbContext(typeof(WindlogContext))]
-    partial class WindlogContextModelSnapshot : ModelSnapshot
+    [Migration("20170102174457_UpdateWindlogUser")]
+    partial class UpdateWindlogUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.1")
@@ -142,8 +143,6 @@ namespace WindLog.Migrations
 
                     b.Property<DateTime>("Purchase");
 
-                    b.Property<string>("UserName");
-
                     b.Property<int>("Year");
 
                     b.HasKey("Id");
@@ -163,8 +162,6 @@ namespace WindLog.Migrations
                     b.Property<string>("Memo");
 
                     b.Property<string>("Name");
-
-                    b.Property<string>("UserName");
 
                     b.HasKey("Id");
 
@@ -186,8 +183,6 @@ namespace WindLog.Migrations
 
                     b.Property<int?>("SpotId");
 
-                    b.Property<string>("UserName");
-
                     b.HasKey("Id");
 
                     b.HasIndex("SpotId");
@@ -200,8 +195,6 @@ namespace WindLog.Migrations
                     b.Property<int>("SessionId");
 
                     b.Property<int>("MaterialId");
-
-                    b.Property<string>("UserName");
 
                     b.HasKey("SessionId", "MaterialId");
 
@@ -233,8 +226,6 @@ namespace WindLog.Migrations
 
                     b.Property<string>("Province");
 
-                    b.Property<string>("UserName");
-
                     b.HasKey("Id");
 
                     b.ToTable("Spots");
@@ -245,8 +236,6 @@ namespace WindLog.Migrations
                     b.Property<string>("Id");
 
                     b.Property<int>("AccessFailedCount");
-
-                    b.Property<bool>("ActiveUser");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();

@@ -6,6 +6,7 @@ namespace WindLog.Models
     public class Session
     {
         public int Id { get; set; }
+        public string UserName { get; set; }
         public string Name { get; set; }
         public DateTime SessionDate { get; set; }        
         public DateTime Created { get; set; }

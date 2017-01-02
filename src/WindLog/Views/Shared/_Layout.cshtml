@@ -17,10 +17,13 @@
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">                
                 <a asp-controller="App" asp-action="Index" class="navbar-brand">Home</a>
-                <a asp-controller="App" asp-action="Sessions" class="navbar-brand">Sessions</a>
-                <a asp-controller="App" asp-action="Spots" class="navbar-brand">Spots</a>
-                <a asp-controller="App" asp-action="Materials" class="navbar-brand">Materials</a>
-                <a asp-controller="App" asp-action="MaterialTypes" class="navbar-brand">Material Types</a>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a asp-controller="App" asp-action="Sessions" class="navbar-brand">Sessions</a>
+                    <a asp-controller="App" asp-action="Spots" class="navbar-brand">Spots</a>
+                    <a asp-controller="App" asp-action="Materials" class="navbar-brand">Materials</a>
+                    <a asp-controller="App" asp-action="MaterialTypes" class="navbar-brand">Material Types</a>
+                }
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <a asp-controller="App" asp-action="About"
@@ -33,7 +36,23 @@
                            class="glyphicon glyphicon-envelope">
                             Contact
                         </a>
-                    </li>                    
+                    </li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>
+                            <a asp-controller="App" asp-action="About"
+                               class="glyphicon glyphicon-comment">
+                                @User.Identity.Name
+                            </a>                           
+                        </li>
+                        <li>
+                            <a asp-controller="Auth" asp-action="Logout">Logout</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li><a asp-controller="Auth" asp-action="Login">Login</a></li>
+                    }
                 </ul>
             </div>
         </nav>

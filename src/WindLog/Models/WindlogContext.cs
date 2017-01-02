@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Framework.Configuration;
 
 namespace WindLog.Models
 {
-    public class WindlogContext : DbContext
+    public class WindlogContext : IdentityDbContext<WindlogUser>
     {
         private IConfigurationRoot _config;
 
@@ -21,6 +22,8 @@ namespace WindLog.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<SessionMaterials>().HasKey(x => new { x.SessionId, x.MaterialId });
 
             modelBuilder.Entity<SessionMaterials>()

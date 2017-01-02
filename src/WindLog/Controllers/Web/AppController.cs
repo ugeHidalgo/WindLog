@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Framework.Configuration;
 using System.Linq;
 using WindLog.Models;
@@ -32,24 +33,28 @@ namespace WindLog.Controllers.Web
             return View();
         }
 
+        [Authorize]
         public IActionResult Sessions()
         {
             var data = _repository.GetAllSessions();
             return View(data);
         }
 
+        [Authorize]
         public IActionResult Spots()
         {
             var data = _repository.GetAllSpots();
             return View(data);
         }
 
+        [Authorize]
         public IActionResult Materials()
         {
             var data = _repository.GetAllMaterials();
             return View(data);
         }
 
+        [Authorize]
         public IActionResult MaterialTypes()
         {
             var data = _repository.GetAllMaterialTypes();

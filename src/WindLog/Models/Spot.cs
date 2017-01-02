@@ -6,6 +6,7 @@ namespace WindLog.Models
     public class Spot
     {        
         public int Id { get; set; }
+        public string UserName { get; set; }
         public string  Name { get; set; }
         public string City { get; set; }
         public string Province { get; set; }

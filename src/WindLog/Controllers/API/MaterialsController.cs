@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using WindLog.Models;
 
 namespace WindLog.Controllers.API
 {
+    [Authorize]
     [Route("api/materials")]
     public class MaterialsController : Controller
     {
