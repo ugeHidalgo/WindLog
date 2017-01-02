@@ -25,7 +25,7 @@ namespace WindLog.Controllers.API
         {
             try
             {
-                IEnumerable<MaterialType> data = _repository.GetAllMaterialTypes();
+                IEnumerable<MaterialType> data = _repository.GetAllMaterialTypes(User.Identity.Name);
                 return Ok(data);
             }
             catch (Exception ex)

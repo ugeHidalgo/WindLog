@@ -25,7 +25,7 @@ namespace WindLog.Controllers.API
         {
             try
             {
-                IEnumerable<Session> data = _repository.GetAllSessions();
+                IEnumerable<Session> data = _repository.GetAllSessions(User.Identity.Name);
                 return Ok(data);
             }
             catch (Exception ex)

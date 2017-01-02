@@ -36,28 +36,28 @@ namespace WindLog.Controllers.Web
         [Authorize]
         public IActionResult Sessions()
         {
-            var data = _repository.GetAllSessions();
+            var data = _repository.GetAllSessions(User.Identity.Name);
             return View(data);
         }
 
         [Authorize]
         public IActionResult Spots()
         {
-            var data = _repository.GetAllSpots();
+            var data = _repository.GetAllSpots(User.Identity.Name);
             return View(data);
         }
 
         [Authorize]
         public IActionResult Materials()
         {
-            var data = _repository.GetAllMaterials();
+            var data = _repository.GetAllMaterials(User.Identity.Name);
             return View(data);
         }
 
         [Authorize]
         public IActionResult MaterialTypes()
         {
-            var data = _repository.GetAllMaterialTypes();
+            var data = _repository.GetAllMaterialTypes(User.Identity.Name);
             return View(data);
         }
     }

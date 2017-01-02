@@ -4,9 +4,9 @@ namespace WindLog.Models
 {
     public interface IWindlogRepository
     {
-        IEnumerable<MaterialType> GetAllMaterialTypes();
-        IEnumerable<Material> GetAllMaterials();
-        IEnumerable<Spot> GetAllSpots();
-        IEnumerable<Session> GetAllSessions();
+        IEnumerable<MaterialType> GetAllMaterialTypes(string userName);
+        IEnumerable<Material> GetAllMaterials(string userName);
+        IEnumerable<Spot> GetAllSpots(string userName);
+        IEnumerable<Session> GetAllSessions(string userName);
     }
 }

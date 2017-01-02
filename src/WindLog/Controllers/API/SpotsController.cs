@@ -25,7 +25,7 @@ namespace WindLog.Controllers.API
         {
             try
             {
-                IEnumerable<Spot> data = _repository.GetAllSpots();
+                IEnumerable<Spot> data = _repository.GetAllSpots(User.Identity.Name);
                 return Ok(data);
             }
             catch (Exception ex)
