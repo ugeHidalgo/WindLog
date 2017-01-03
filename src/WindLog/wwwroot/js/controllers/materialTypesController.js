@@ -5,23 +5,22 @@
         .module('app-materialTypes')
         .controller('materialTypesController', materialTypesController);
 
-    function materialTypesController() {
+    function materialTypesController($http) {
         var vm = this;
-        vm.materialTypes = [{
-            created: new Date(),
-            name: "Titan",
-            brand: "Naish",
-            model: "Titan 110"
-        }, {
-            created: new Date(),
-            name: "Rocket",
-            brand: "Tabou",
-            model: "Rocket 95"
-        }, {
-            created: new Date(),
-            name: "RRD Wave",
-            brand: "RRD",
-            model: "Wave Cult 82 LTD"
-        }];
+        vm.materialTypes = [];
+        vm.errorMessages = '';
+        vm.isBusy = true;
+
+        $http.get('/api/materialtypes')
+            .then(function (response) {
+                //Success
+                angular.copy(response.data, vm.materialTypes);
+            }, function (error) {
+                //Failure
+                vm.errorMessages = 'Failed to load material types: ' + error;
+            })
+            .finally(function () {
+                vm.isBusy = false;
+            });
     }
 })();
