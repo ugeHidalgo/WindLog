@@ -1,17 +1,43 @@
 ﻿@{
     ViewBag.Title = "Material Types Page";
 }
+@section Scripts {
+    <script src="~/lib/angular/angular.min.js"></script>
+    <script src="~/js/controllers/app-materialTypes.js"></script>
+    <script src="~/js/controllers/materialTypesController.js"></script>
+}
 
 <h1>Material Types</h1>
 
 <h2>Under construction !!!</h2>
 
 
-<div class="col-md-6">
-    <ul>
-        @foreach (var materialType in Model)
+<div class="col-md-6" ng-app="app-materialTypes">
+    <div ng-controller="materialTypesController as vm" class="col-md-8 col-md-offset-1">
+        <table class="table table-responsive table-striped">
+            <thead>
+                <tr>
+                    <th>Created</th>
+                    <th>Name</th>
+                    <th>Brand</th>
+                    <th>Model</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="materialType in vm.materialTypes">
+                    <td>{{ materialType.created | date : "dd-MM-yyyy" }}</td>
+                    <td>{{ materialType.name }}</td>
+                    <td>{{ materialType.brand }}</td>
+                    <td>{{ materialType.model }}</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        @*<ul>
+            @foreach (var materialType in Model)
             {
-            <li>@materialType.Created.ToString("d") @materialType.Name</li>
-        }
-    </ul>
+                <li>@materialType.Created.ToString("d") @materialType.Name</li>
+            }
+        </ul>*@
+    </div>
 </div>
