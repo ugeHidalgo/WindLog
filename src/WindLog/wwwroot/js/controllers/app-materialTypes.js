@@ -1,3 +1,3 @@
 ﻿(function () {
-    angular.module('app-materialTypes', []);
+    angular.module('app-materialTypes', ['simpleControls']);
 })();
