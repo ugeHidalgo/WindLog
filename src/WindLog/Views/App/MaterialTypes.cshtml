@@ -3,6 +3,7 @@
 }
 @section Scripts {
     <script src="~/lib/angular/angular.min.js"></script>
+    <script src="~/lib/angular-route/angular-route.min.js"></script>
     <script src="~/js/controllers/simpleControls.js"></script>
     <script src="~/js/controllers/app-materialTypes.js"></script>
     <script src="~/js/controllers/materialTypesController.js"></script>
@@ -11,31 +12,7 @@
 <h3 class="text-center">Material Types (Under construction !!!)</h3>
 
 <div ng-app="app-materialTypes">
-    <div ng-controller="materialTypesController as vm" class="col-md-12">
-        <div class="text-danger" ng-show="vm.errorMessage">{{vm.errorMessage}}</div>
-        <wait-cursor display-when="vm.isBusy"></wait-cursor>
-        <table class="table table-responsive table-striped table-bordered table-hover">
-            <thead>
-                <tr>
-                    <th>Created</th>
-                    <th>Name</th>
-                    <th>Observ.</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="materialType in vm.materialTypes">
-                    <td class="col-sm-2">{{ materialType.created | date : "dd-MM-yyyy" }}</td>
-                    <td class="col-sm-3">{{ materialType.name }}</td>
-                    <td class="col-sm-7">{{ materialType.memo }}</td>
-                </tr>
-            </tbody>
-        </table>
 
-        @*<ul>
-                @foreach (var materialType in Model)
-                {
-                    <li>@materialType.Created.ToString("d") @materialType.Name</li>
-                }
-            </ul>*@
-    </div>
+    <div ng-view></div> @*materialTypesView.html in client side*@
+
 </div>
