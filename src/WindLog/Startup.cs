@@ -85,6 +85,7 @@ namespace WindLog
                 config.AddProfile(new MaterialTypeMapper());
                 config.AddProfile(new MaterialMapper());
                 config.AddProfile(new SpotMapper());
+                config.AddProfile(new SessionMapper());
             });            
         }
     }

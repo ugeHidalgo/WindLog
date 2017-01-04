@@ -2,13 +2,21 @@
 @{
     ViewBag.Title = "Sessions Page";
 }
+@section Scripts {
+    <script src="~/lib/angular/angular.min.js"></script>
+    <script src="~/lib/angular-route/angular-route.min.js"></script>
+    <script src="~/js/controllers/simpleControls.js"></script>
+    <script src="~/js/controllers/app-sessions.js"></script>
+    <script src="~/js/controllers/sessionsController.js"></script>
+}
 
-<h1>Sessions</h1>
+<h3 class="text-center">Sessions</h3>
+<div ng-app="app-sessions">
+    <div ng-view></div> @*sessionsView.html in client side*@
+</div>
 
-<h2>Under construction !!!</h2>
 
-
-    <div class="col-md-6">
+    @*<div class="col-md-6">
         <ul>
             @foreach (var session in Model)
             {
@@ -21,4 +29,4 @@
                 </ul>
             }
         </ul>
-    </div>
+    </div>*@
