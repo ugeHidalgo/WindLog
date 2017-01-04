@@ -110,7 +110,7 @@ namespace WindLog.Models
                 var torre = new Spot() { UserName = TheUser, Name = "Torrenueva", City = "Torrenueva", Province = "Granada", Country = "España", Created = DateTime.Now, Memo = "" };
                 var rules = new Spot() { UserName = TheUser, Name = "Rules", City = "", Province = "Granada", Country = "España", Created = DateTime.Now, Memo = "Embalse de Rules." };
                 var playaGranada = new Spot() { UserName = TheUser, Name = "PlayaGranada", City = "Motril", Province = "Granada", Country = "España", Created = DateTime.Now, Memo = "" };
-                var ponde = new Spot() { UserName = TheUser, Name = "La Ponderosa", City = "Almuñecar", Province = "", Country = "España", Created = DateTime.Now, Memo = "También llamado Las Góndolas." };
+                var ponde = new Spot() { UserName = TheUser, Name = "La Ponderosa", City = "Almuñecar", Province = "Granada", Country = "España", Created = DateTime.Now, Memo = "También llamado Las Góndolas." };
                 var valde = new Spot() { UserName = TheUser, Name = "Valdevaqueros", City = "Tarifa", Province = "Cádiz", Country = "España", Created = DateTime.Now, Memo = "" };
                 var lances = new Spot() { UserName = TheUser, Name = "Los Lances Norte", City = "Tarifa", Province = "Cádiz", Country = "España", Created = DateTime.Now, Memo = "" };
                 var victor = new Spot() { UserName = TheUser, Name = "Victor Center(Almerimar)", City = "El Ejido", Province = "Almería", Country = "España", Created = DateTime.Now, Memo = "" };

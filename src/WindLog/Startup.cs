@@ -7,6 +7,7 @@ using WindLog.Models;
 using Microsoft.Framework.Configuration;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using WindLog.Models.Mappers;
+using AutoMapper;
 
 namespace WindLog
 {
@@ -56,7 +57,7 @@ namespace WindLog
         {
             ConfigureMappers();
 
-                loggerFactory.AddConsole();
+            loggerFactory.AddConsole();
 
             if (env.IsDevelopment())
             {
@@ -79,8 +80,11 @@ namespace WindLog
 
         private void ConfigureMappers()
         {
-            MaterialTypeMapper materialTypeMapper = new MaterialTypeMapper();
-            materialTypeMapper.InitMapper();
+            Mapper.Initialize(config =>
+            {
+                config.AddProfile(new MaterialTypeMapper());
+                config.AddProfile(new MaterialMapper());                
+            });            
         }
     }
 }

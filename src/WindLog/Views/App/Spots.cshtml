@@ -1,16 +1,17 @@
 ﻿@{
     ViewBag.Title = "Spots Page";
 }
+@section Scripts {
+    <script src="~/lib/angular/angular.min.js"></script>
+    <script src="~/lib/angular-route/angular-route.min.js"></script>
+    <script src="~/js/controllers/simpleControls.js"></script>
+    <script src="~/js/controllers/app-spots.js"></script>
+    <script src="~/js/controllers/spotsController.js"></script>
+}
 
-<h1>Spots</h1>
+<h3 class="text-center">Spots</h3>
+<div ng-app="app-spots">
 
-<h2>Under construction !!!</h2>
+    <div ng-view></div> @*spotsView.html in client side*@
 
-<div class="col-md-6">
-    <ul>
-        @foreach (var spot in Model)
-            {
-            <li>@spot.Name / @spot.City / @spot.Province</li>
-        }
-    </ul>
 </div>

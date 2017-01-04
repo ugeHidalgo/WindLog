@@ -1,16 +1,17 @@
 ﻿@{
     ViewBag.Title = "Materials Page";
 }
+@section Scripts {
+    <script src="~/lib/angular/angular.min.js"></script>
+    <script src="~/lib/angular-route/angular-route.min.js"></script>
+    <script src="~/js/controllers/simpleControls.js"></script>
+    <script src="~/js/controllers/app-materials.js"></script>
+    <script src="~/js/controllers/materialsController.js"></script>
+}
 
-<h1>Materials</h1>
+<h3 class="text-center">Materials</h3>
+<div ng-app="app-materials">
 
-<h2>Under construction !!!</h2>
+    <div ng-view></div> @*materialsView.html in client side*@
 
-<div class="col-md-6">
-    <ul>
-        @foreach (var material in Model)
-            {
-            <li>(@material.MaterialType.Name) @material.Name / @material.Brand / @material.Model</li>
-        }
-    </ul>
 </div>

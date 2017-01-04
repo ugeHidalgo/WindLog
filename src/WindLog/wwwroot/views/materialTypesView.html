@@ -5,6 +5,7 @@
         <thead>
             <tr>
                 <th></th>
+                <th></th>
                 <th>Created</th>
                 <th>Name</th>
                 <th>Observ.</th>
@@ -12,7 +13,8 @@
         </thead>
         <tbody>
             <tr ng-repeat="materialType in vm.materialTypes">
-                <td class="col-sm-1"><a href="#" class="btn btn-sm btn-primary">Edit</a></td>
+                <td class="col-sm-1"><a href="#" class="btn btn-xs btn-info">Edit</a></td>
+                <td class="col-xs-1"><a href="#" class="btn btn-xs btn-info">Delete</a></td>
                 <td class="col-sm-2">{{ materialType.dateCreated | date : "dd-MM-yyyy" }}</td>
                 <td class="col-md-2">{{ materialType.name }}</td>
                 <td class="col-md-5">{{ materialType.memo }}</td>
