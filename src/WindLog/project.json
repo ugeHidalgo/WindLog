@@ -17,7 +17,8 @@
       "type": "build"
     },
     "Microsoft.EntityFrameworkCore.Relational": "1.0.1",
-    "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "1.0.0"
+    "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "1.0.0",
+    "AutoMapper": "5.2.0"
   },
 
   "tools": {

@@ -4,6 +4,7 @@
     <table class="table table-responsive table-striped table-bordered table-hover">
         <thead>
             <tr>
+                <th></th>
                 <th>Created</th>
                 <th>Name</th>
                 <th>Observ.</th>
@@ -11,9 +12,10 @@
         </thead>
         <tbody>
             <tr ng-repeat="materialType in vm.materialTypes">
-                <td class="col-sm-2">{{ materialType.created | date : "dd-MM-yyyy" }}</td>
-                <td class="col-sm-3">{{ materialType.name }}</td>
-                <td class="col-sm-7">{{ materialType.memo }}</td>
+                <td class="col-sm-1"><a href="#" class="btn btn-sm btn-primary">Edit</a></td>
+                <td class="col-sm-2">{{ materialType.dateCreated | date : "dd-MM-yyyy" }}</td>
+                <td class="col-md-2">{{ materialType.name }}</td>
+                <td class="col-md-5">{{ materialType.memo }}</td>
             </tr>
         </tbody>
     </table>

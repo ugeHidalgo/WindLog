@@ -10,9 +10,5 @@ namespace WindLog.Models
         public string Name { get; set; }
         public DateTime Created { get; set; }
         public string Memo { get; set; }
-
-        #region relations
-        //public ICollection<Material> Materials { get; set; }
-        #endregion
     }
 }

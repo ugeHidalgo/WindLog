@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using WindLog.Models;
 using Microsoft.Framework.Configuration;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using WindLog.Models.Mappers;
 
 namespace WindLog
 {
@@ -53,7 +54,9 @@ namespace WindLog
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory,
             WindlogContextSeedData seeder)
         {
-            loggerFactory.AddConsole();
+            ConfigureMappers();
+
+                loggerFactory.AddConsole();
 
             if (env.IsDevelopment())
             {
@@ -73,5 +76,11 @@ namespace WindLog
 
             seeder.SeedData().Wait();
          }
+
+        private void ConfigureMappers()
+        {
+            MaterialTypeMapper materialTypeMapper = new MaterialTypeMapper();
+            materialTypeMapper.InitMapper();
+        }
     }
 }
