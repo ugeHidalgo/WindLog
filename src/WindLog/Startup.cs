@@ -83,7 +83,8 @@ namespace WindLog
             Mapper.Initialize(config =>
             {
                 config.AddProfile(new MaterialTypeMapper());
-                config.AddProfile(new MaterialMapper());                
+                config.AddProfile(new MaterialMapper());
+                config.AddProfile(new SpotMapper());
             });            
         }
     }
