@@ -10,6 +10,7 @@
         vm.materials = [];
         vm.errorMessages = '';
         vm.isBusy = true;
+        vm.itemsByPage = 10;
 
         $http.get('/api/materials')
             .then(function (response) {

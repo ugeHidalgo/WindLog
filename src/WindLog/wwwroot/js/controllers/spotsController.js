@@ -10,6 +10,7 @@
         vm.spots = [];
         vm.errorMessages = '';
         vm.isBusy = true;
+        vm.itemsByPage = 10;
 
         $http.get('/api/spots')
             .then(function (response) {

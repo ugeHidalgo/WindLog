@@ -1,14 +1,18 @@
 ﻿(function () {
-    angular.module('app-sessions', ['simpleControls', 'ngRoute'])
-    .config(function ($routeProvider) {
-        $routeProvider.when('/', {
-            controller: 'sessionsController',
-            controllerAs: 'vm',
-            templateUrl: '/views/sessionsView.html'
-        });
+    angular
+        .module('app-sessions', [
+            'simpleControls',
+            'ngRoute',
+            'smart-table'])
+        .config(function ($routeProvider) {
+            $routeProvider.when('/', {
+                controller: 'sessionsController',
+                controllerAs: 'vm',
+                templateUrl: '/views/sessionsView.html'
+            });
 
-        $routeProvider.otherwise({
-            redirectTo: '/'
+            $routeProvider.otherwise({
+                redirectTo: '/'
+            });
         });
-    });
 })();

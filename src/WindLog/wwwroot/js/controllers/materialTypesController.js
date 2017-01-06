@@ -10,6 +10,7 @@
         vm.materialTypes = [];
         vm.errorMessages = '';
         vm.isBusy = true;
+        vm.itemsByPage = 10;
 
         $http.get('/api/materialtypes')
             .then(function (response) {

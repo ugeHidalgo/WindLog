@@ -10,6 +10,7 @@
         vm.sessions = [];
         vm.errorMessages = '';
         vm.isBusy = true;
+        vm.itemsByPage = 10;
 
         $http.get('/api/sessions')
             .then(function (response) {
