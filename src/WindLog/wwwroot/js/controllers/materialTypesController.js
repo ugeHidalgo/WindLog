@@ -8,6 +8,7 @@
     function materialTypesController($http) {
         var vm = this;
         vm.materialTypes = [];
+        vm.materialTypeInForm = {};
         vm.errorMessages = '';
         vm.isBusy = true;
         vm.itemsByPage = 10;
@@ -23,5 +24,9 @@
             .finally(function () {
                 vm.isBusy = false;
             });
+
+        vm.addMaterialType = function () {
+
+        };
     }
 })();

@@ -39,4 +39,40 @@
             </tr>
         </tfoot>
     </table>
+
+    <div class="col-md-12">
+        <form novalidate name="materialTypeForm" ng-submit="vm.addMaterialType()" class="form-horizontal">
+            <div class="form-group">
+                <label class="col-md-1 control-label" for="dateCreated">Created</label>
+                <div class="col-md-2 date">
+                    <div class="input-group input-append date" id="datePicker">
+                        <input class="form-control" type="date" id="dateCreated" name="dateCreated" readonly="readonly"
+                               ng-model="vm.materialTypeInForm.dateCreated" />
+                        <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-1 control-label" for="name">Name</label>
+                <div class="col-md-5">
+                    <input class="form-control" type="text" id="name" name="name"
+                           ng-model="vm.materialTypeInForm.name" required ng-minlength="5" />
+                    <span ng-show="materialTypeForm.name.$error.required" class="text-warning">Valor obligatorio.</span>
+                    <span ng-show="materialTypeForm.name.$error.minlength" class="text-warning">Longitud minima de 5 caracteres.</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-1 control-label" for="memo">Observ.</label>
+                <div class="col-md-5">
+                    <textarea class="form-control" cols="40" rows="10" id="name" name="name"
+                           ng-model="vm.materialTypeInForm.memo"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add"
+                       class="btn btn-success btn-sm col-md-1 col-md-offset-1"
+                       ng-disabled="materialTypeForm.$invalid" />
+            </div>
+        </form>
+    </div>
 </div>
