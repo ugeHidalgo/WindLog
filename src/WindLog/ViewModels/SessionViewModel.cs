@@ -21,7 +21,7 @@ namespace WindLog.ViewModels
 
         public string Memo { get; set; }
 
-        public Spot Spot { get; set; }
+        public SpotViewModel Spot { get; set; }
 
         public ICollection<MaterialViewModel> Materials { get; set; }
     }

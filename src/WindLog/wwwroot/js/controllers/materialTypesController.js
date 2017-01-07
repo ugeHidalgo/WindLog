@@ -26,7 +26,21 @@
             });
 
         vm.addMaterialType = function () {
+            vm.materialTypeInForm = {};
+        };
 
+        vm.selectRow = function (row) {
+            vm.materialTypeInForm = row;
+            vm.materialTypeInForm.dateCreated = row.dateCreated;
+        };
+
+        vm.newItem = function () {
+            vm.materialTypeInForm = {};
+            vm.materialTypeInForm.dateCreated = new Date();
+        };
+
+        vm.clearItem = function () {
+            vm.materialTypeInForm = {};
         };
     }
 })();

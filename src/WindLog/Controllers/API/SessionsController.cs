@@ -31,16 +31,10 @@ namespace WindLog.Controllers.API
                 IEnumerable<Session> sessions = _repository.GetAllSessions(User.Identity.Name);
                 foreach (var session in sessions)
                 {
-                    var sessionViewModel = Mapper.Map<SessionViewModel>(session);
-                    if (session.SessionMaterials != null)
-                    {
-                        sessionViewModel.Materials = new List<MaterialViewModel>();
-                        foreach (var sessionMaterial in session.SessionMaterials)
-                        {
-                            var materialViewModel = Mapper.Map<MaterialViewModel>(sessionMaterial.Material);
-                            sessionViewModel.Materials.Add(materialViewModel);
-                        }
-                    }                    
+                    SessionViewModel sessionViewModel = FillSessionData(session);
+                    FillSpotData(session, sessionViewModel);
+                    FillMaterialsData(session, sessionViewModel);
+
                     result.Add(sessionViewModel);
                 }
                 return Ok(result);
@@ -51,5 +45,32 @@ namespace WindLog.Controllers.API
                 return BadRequest("An error occurred while getting sessions.");
             }
         }
+
+        #region Private methods
+
+        private static SessionViewModel FillSessionData(Session session)
+        {
+            return Mapper.Map<SessionViewModel>(session);
+        }
+
+        private static void FillSpotData(Session session, SessionViewModel sessionViewModel)
+        {
+            sessionViewModel.Spot = Mapper.Map<SpotViewModel>(session.Spot);
+        }
+
+        private static void FillMaterialsData(Session session, SessionViewModel sessionViewModel)
+        {
+            if (session.SessionMaterials != null)
+            {
+                sessionViewModel.Materials = new List<MaterialViewModel>();
+                foreach (var sessionMaterial in session.SessionMaterials)
+                {
+                    var materialViewModel = Mapper.Map<MaterialViewModel>(sessionMaterial.Material);
+                    sessionViewModel.Materials.Add(materialViewModel);
+                }
+            }
+        }
+
+        #endregion
     }
 }

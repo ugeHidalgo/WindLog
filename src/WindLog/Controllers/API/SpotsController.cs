@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using WindLog.Models;
+using WindLog.ViewModels;
 
 namespace WindLog.Controllers.API
 {
@@ -26,7 +28,7 @@ namespace WindLog.Controllers.API
             try
             {
                 IEnumerable<Spot> data = _repository.GetAllSpots(User.Identity.Name);
-                return Ok(data);
+                return Ok(Mapper.Map<IEnumerable<SpotViewModel>>(data));
             }
             catch (Exception ex)
             {

@@ -20,12 +20,15 @@
                 <td class="col-md-2">{{ row.name }}</td>
                 <td class="col-md-5">{{ row.memo }}</td>
                 <td class="col-xs-1">
-                    <a href="#" class="btn btn-xs btn-info">
+                    <!--<a href="#" class="btn btn-xs btn-info">
                         <i class="glyphicon glyphicon-edit" title="Edit"></i>
-                    </a>
+                    </a>-->
+                    <button type="button" ng-click="vm.selectRow(row)" class="btn btn-xs btn-info">
+                        <i class="glyphicon glyphicon-edit" title="Select"></i>
+                    </button>
                 </td>
                 <td class="col-xs-1">
-                    <button type="button" ng-click="removeRow(row)" class="btn btn-xs btn-danger">
+                    <button type="button" ng-click="vm.removeRow(row)" class="btn btn-xs btn-danger">
                         <i class="glyphicon glyphicon-remove" title="Remove"></i>
                     </button>
                 </td>
@@ -46,7 +49,7 @@
                 <label class="col-md-1 control-label" for="dateCreated">Created</label>
                 <div class="col-md-2 date">
                     <div class="input-group input-append date" id="datePicker">
-                        <input class="form-control" type="date" id="dateCreated" name="dateCreated" readonly="readonly"
+                        <input class="form-control" type="date" id="dateCreated" name="dateCreated"
                                ng-model="vm.materialTypeInForm.dateCreated" />
                         <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
                     </div>
@@ -56,7 +59,7 @@
                 <label class="col-md-1 control-label" for="name">Name</label>
                 <div class="col-md-5">
                     <input class="form-control" type="text" id="name" name="name"
-                           ng-model="vm.materialTypeInForm.name" required ng-minlength="5" />
+                           ng-model="vm.materialTypeInForm.name" required ng-minlength="3" />
                     <span ng-show="materialTypeForm.name.$error.required" class="text-warning">Valor obligatorio.</span>
                     <span ng-show="materialTypeForm.name.$error.minlength" class="text-warning">Longitud minima de 5 caracteres.</span>
                 </div>
@@ -65,12 +68,20 @@
                 <label class="col-md-1 control-label" for="memo">Observ.</label>
                 <div class="col-md-5">
                     <textarea class="form-control" cols="40" rows="10" id="name" name="name"
-                           ng-model="vm.materialTypeInForm.memo"></textarea>
+                              ng-model="vm.materialTypeInForm.memo"></textarea>
                 </div>
             </div>
             <div class="form-group">
-                <input type="submit" value="Add"
-                       class="btn btn-success btn-sm col-md-1 col-md-offset-1"
+                <a ng-click="vm.newItem()" class="btn btn-sm btn-default col-md-offset-1">
+                    <i class="fa fa-edit"></i>
+                    New
+                </a>
+                <a ng-click="vm.clearItem()" class="btn btn-sm btn-default">
+                    <i class="fa fa-eraser"></i>
+                    Clear
+                </a>
+                <input type="submit" value="Save"
+                       class="btn btn-danger btn-sm"
                        ng-disabled="materialTypeForm.$invalid" />
             </div>
         </form>

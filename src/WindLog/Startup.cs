@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using WindLog.Models;
 using Microsoft.Framework.Configuration;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using WindLog.Models.Mappers;
 using AutoMapper;
+using WindLog.Models.MappersProfiles;
 
 namespace WindLog
 {
@@ -55,7 +55,7 @@ namespace WindLog
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory,
             WindlogContextSeedData seeder)
         {
-            ConfigureMappers();
+            ConfigureMappers();            
 
             loggerFactory.AddConsole();
 
@@ -82,10 +82,10 @@ namespace WindLog
         {
             Mapper.Initialize(config =>
             {
-                config.AddProfile(new MaterialTypeMapper());
-                config.AddProfile(new MaterialMapper());
-                config.AddProfile(new SpotMapper());
-                config.AddProfile(new SessionMapper());
+                config.AddProfile(new MaterialTypeMapperProfile());
+                config.AddProfile(new MaterialMapperProfile());
+                config.AddProfile(new SpotMapperProfile());
+                config.AddProfile(new SessionMapperProfile());
             });            
         }
     }
