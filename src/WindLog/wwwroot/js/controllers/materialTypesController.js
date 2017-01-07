@@ -11,7 +11,7 @@
         vm.materialTypeInForm = {};
         vm.errorMessages = '';
         vm.isBusy = true;
-        vm.itemsByPage = 10;
+        vm.itemsByPage = 8;
 
         $http.get('/api/materialtypes')
             .then(function (response) {
@@ -26,21 +26,47 @@
             });
 
         vm.addMaterialType = function () {
-            vm.materialTypeInForm = {};
+            vm.isBusy = true;
+            vm.errorMessage = '';
+
+            $http.post('/api/materialtypes', vm.materialTypeInForm)
+                .then(function (response) { //Success
+                    vm.materialTypes.push(response.data);
+                    vm.materialTypeInForm = {};
+                }, function (error) { //Failure
+                    vm.errorMessage = 'Failed to save new material type :' + error;
+                })
+                .finally(function () {
+                    vm.isBusy = false;
+                });
         };
 
         vm.selectRow = function (row) {
-            vm.materialTypeInForm = row;
-            vm.materialTypeInForm.dateCreated = row.dateCreated;
+            var year, month, day;
+
+            vm.materialTypeInForm = _copyRow(row);            
+            year = row.dateCreated.slice(0, 4);
+            month = row.dateCreated.slice(5, 7)-1;
+            day = row.dateCreated.slice(8, 10);
+            vm.materialTypeInForm.dateCreated = new Date(year,month,day);
         };
 
         vm.newItem = function () {
             vm.materialTypeInForm = {};
+            vm.materialTypeInForm.id = -1;
             vm.materialTypeInForm.dateCreated = new Date();
         };
 
         vm.clearItem = function () {
             vm.materialTypeInForm = {};
-        };
+        };        
     }
 })();
+
+_copyRow = function (row) {
+    var newRow = {};
+    for (var propertyName in row) {
+        newRow[propertyName] = row[propertyName];
+    }
+    return newRow;
+}

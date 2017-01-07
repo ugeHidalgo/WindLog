@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System;
+using System.Threading.Tasks;
 
 namespace WindLog.Models
 {
@@ -11,7 +13,7 @@ namespace WindLog.Models
         public WindlogRepository(WindlogContext context)
         {
             _context = context;
-        }
+        }       
 
         public IEnumerable<Material> GetAllMaterials(string userName)
         {
@@ -46,6 +48,17 @@ namespace WindLog.Models
         {
             return _context.Spots
                 .Where(x => x.UserName == userName);
+        }
+
+        public void AddMaterialType(MaterialType matType)
+        {
+            matType.Created = DateTime.Now;
+            _context.Add(matType);
+        }
+
+        public async Task<bool> SaveChangesAsync()
+        {
+            return (await _context.SaveChangesAsync()) > 0;
         }
     }
 }
