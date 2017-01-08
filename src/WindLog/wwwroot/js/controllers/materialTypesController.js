@@ -59,7 +59,19 @@
 
         vm.clearItem = function () {
             vm.materialTypeInForm = {};
-        };        
+        };
+
+        vm.removeRow = function (row) {
+            vm.isBusy = true;
+            $http.delete('/api/materialtypes/' + row.id)
+                .then(function (response) { //success                    
+                    vm.materialTypes = _removeItemFromArray(vm.materialTypes, row.id);
+                }, function () { //Failure
+                })
+                .finally(function () {
+                    vm.isBusy = false;
+                });
+        };
     }
 })();
 
@@ -69,4 +81,14 @@ _copyRow = function (row) {
         newRow[propertyName] = row[propertyName];
     }
     return newRow;
+}
+
+_removeItemFromArray = function (items, itemId) {
+    var newItems = [];
+    items.forEach(function (item) {
+        if (item.id !== itemId) {
+            newItems.push(item);
+        }
+    });
+    return newItems;
 }

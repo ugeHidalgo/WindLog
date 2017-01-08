@@ -23,12 +23,16 @@
                     <!--<a href="#" class="btn btn-xs btn-info">
                         <i class="glyphicon glyphicon-edit" title="Edit"></i>
                     </a>-->
-                    <button type="button" ng-click="vm.selectRow(row)" class="btn btn-xs btn-info">
+                    <button type="button" 
+                            class="btn btn-xs btn-info"
+                            ng-click="vm.selectRow(row)">
                         <i class="glyphicon glyphicon-edit" title="Select"></i>
                     </button>
                 </td>
                 <td class="col-xs-1">
-                    <button type="button" ng-click="vm.removeRow(row)" class="btn btn-xs btn-danger">
+                    <button type="button"                              
+                            class="btn btn-xs btn-danger"
+                            ng-click="vm.removeRow(row)">
                         <i class="glyphicon glyphicon-remove" title="Remove"></i>
                     </button>
                 </td>

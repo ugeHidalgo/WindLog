@@ -12,6 +12,8 @@ namespace WindLog.Models
 
         void AddMaterialType(MaterialType matType);
 
+        bool RemoveMaterialType(int id, string username);
+
         Task<bool> SaveChangesAsync();
     }
 }

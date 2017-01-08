@@ -11,7 +11,7 @@ using WindLog.ViewModels;
 namespace WindLog.Controllers.API
 {
     [Authorize]
-    [Route("api/materialtypes")]
+    //[Route("api/materialtypes")]
     public class MaterialTypesController : Controller
     {
         private ILogger<MaterialTypesController> _logger;
@@ -23,7 +23,7 @@ namespace WindLog.Controllers.API
             _logger = logger;
         }
 
-        [HttpGet("")]
+        [HttpGet("/api/materialtypes")]
         public ActionResult Get()
         {
             try
@@ -38,7 +38,7 @@ namespace WindLog.Controllers.API
             }
         }
 
-        [HttpPost("")]
+        [HttpPost("/api/materialtypes")]
         public async Task<ActionResult> Post([FromBody]MaterialTypeViewModel newMatTypeViewModel)
         {
             if (ModelState.IsValid)
@@ -54,6 +54,27 @@ namespace WindLog.Controllers.API
                 }
             }
             return BadRequest("Failed to save changes to database");
+        }
+
+        [HttpDelete("/api/materialtypes/{id}")]
+        public async Task<ActionResult> RemoveMaterialType(int id)
+        {
+            try
+            {
+                bool result = _repository.RemoveMaterialType(id, User.Identity.Name);
+                if (result)
+                {
+                    if (await _repository.SaveChangesAsync())
+                    {
+                        return Ok();
+                    }
+                }
+            }
+            catch (System.Exception ex)
+            {
+                _logger.LogError($"Failed to remove material type {id} : {ex}");
+            }
+            return BadRequest($"Failed to remove material type {id}.");
         }
     }
 }

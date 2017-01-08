@@ -56,6 +56,14 @@ namespace WindLog.Models
             _context.Add(matType);
         }
 
+        public bool RemoveMaterialType(int id, string username)
+        {            
+            var materialTypeToRemove = _context.MaterialTypes.FirstOrDefault(x => x.Id == id && x.UserName == username);
+            if (materialTypeToRemove == null) return false;
+            _context.MaterialTypes.Remove(materialTypeToRemove);
+            return true;
+        }
+
         public async Task<bool> SaveChangesAsync()
         {
             return (await _context.SaveChangesAsync()) > 0;
