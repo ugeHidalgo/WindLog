@@ -46,7 +46,14 @@ namespace WindLog.Controllers.API
                 MaterialType newMatType = Mapper.Map<MaterialType>(newMatTypeViewModel);
                 newMatType.UserName = User.Identity.Name;
 
-                _repository.AddMaterialType(newMatType);
+                if (newMatType.Id==0)
+                {
+                    _repository.AddMaterialType(newMatType);
+                }
+                else
+                {
+                    _repository.UpdateMaterialType(newMatType);
+                }
 
                 if (await _repository.SaveChangesAsync())
                 {

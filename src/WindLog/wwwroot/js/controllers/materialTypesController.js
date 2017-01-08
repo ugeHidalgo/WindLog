@@ -23,22 +23,23 @@
             })
             .finally(function () {
                 vm.isBusy = false;
-            });
+            });        
 
         vm.addMaterialType = function () {
             vm.isBusy = true;
             vm.errorMessage = '';
 
             $http.post('/api/materialtypes', vm.materialTypeInForm)
-                .then(function (response) { //Success
-                    vm.materialTypes.push(response.data);
-                    vm.materialTypeInForm = {};
-                }, function (error) { //Failure
-                    vm.errorMessage = 'Failed to save new material type :' + error;
-                })
-                .finally(function () {
-                    vm.isBusy = false;
-                });
+                    .then(function (response) { //Success
+                        //vm.materialTypes.push(response.data);
+                        vm.materialTypes = _getMaterialTypes($http);
+                        vm.materialTypeInForm = {};
+                    }, function (error) { //Failure
+                        vm.errorMessage = 'Failed to save new material type :' + error;
+                    })
+                    .finally(function () {
+                        vm.isBusy = false;
+                    });
         };
 
         vm.selectRow = function (row) {
@@ -53,7 +54,7 @@
 
         vm.newItem = function () {
             vm.materialTypeInForm = {};
-            vm.materialTypeInForm.id = -1;
+            vm.materialTypeInForm.id = 0;
             vm.materialTypeInForm.dateCreated = new Date();
         };
 
@@ -74,6 +75,22 @@
         };
     }
 })();
+
+_getMaterialTypes = function (http) {
+    var materialTypes = [];
+
+    http.get('/api/materialtypes')
+    .then(function (response) {
+        //Success
+        angular.copy(response.data, materialTypes);
+    }, function (error) {
+        //Failure
+        //vm.errorMessages = 'Failed to load material types: ' + error;
+    })
+    .finally(function () {        
+    });
+    return materialTypes;
+}
 
 _copyRow = function (row) {
     var newRow = {};

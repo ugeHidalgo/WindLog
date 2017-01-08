@@ -11,6 +11,7 @@ namespace WindLog.Models
         IEnumerable<Session> GetAllSessions(string userName);
 
         void AddMaterialType(MaterialType matType);
+        void UpdateMaterialType(MaterialType matType);
 
         bool RemoveMaterialType(int id, string username);
 
