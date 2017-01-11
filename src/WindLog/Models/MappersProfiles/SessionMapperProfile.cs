@@ -11,7 +11,10 @@ namespace WindLog.Models.MappersProfiles
                 .ForMember(
                     sessionViewModel => sessionViewModel.DateCreated,
                     session => session.MapFrom(model => model.Created))
-                .ReverseMap();
+                .ReverseMap()
+                .ForMember(
+                    session => session.Created,
+                    sessionViewModel => sessionViewModel.MapFrom(model => model.DateCreated));
         }
     }
 }

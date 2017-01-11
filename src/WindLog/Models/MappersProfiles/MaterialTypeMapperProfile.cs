@@ -12,7 +12,11 @@ namespace WindLog.Models.MappersProfiles
                     matTypeViewModel => matTypeViewModel.DateCreated,
                     matType => matType.MapFrom(model => model.Created)
                  )
-                .ReverseMap();
+                .ReverseMap()
+                .ForMember(
+                    matType => matType.Created,
+                    matTypeViewModel => matTypeViewModel.MapFrom(model => model.DateCreated)
+                 );
         }
     }
 }

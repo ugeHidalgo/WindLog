@@ -14,7 +14,13 @@ namespace WindLog.Models.MappersProfiles
                 .ForMember(
                     matViewModel => matViewModel.DatePurchased,
                     mat => mat.MapFrom(model => model.Purchase))
-                .ReverseMap();            
+                .ReverseMap()
+                .ForMember(
+                    mat => mat.Created,
+                    matViewModel => matViewModel.MapFrom(model => model.DateCreated))
+                .ForMember(
+                    mat => mat.Purchase,
+                    matViewModel => matViewModel.MapFrom(model => model.DatePurchased));
         }
     }
 }

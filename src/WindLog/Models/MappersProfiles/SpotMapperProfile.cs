@@ -11,7 +11,10 @@ namespace WindLog.Models.MappersProfiles
                 .ForMember(
                     spotViewModel => spotViewModel.DateCreated,
                     spot => spot.MapFrom(model => model.Created))                
-                .ReverseMap();
+                .ReverseMap()
+                .ForMember(
+                    spot => spot.Created,
+                    spotViewModel => spotViewModel.MapFrom(model => model.DateCreated));
         }
     }
 }
