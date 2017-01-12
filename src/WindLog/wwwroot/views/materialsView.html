@@ -1,11 +1,13 @@
 ﻿<div class="col-md-12">
     <div class="text-danger" ng-show="vm.errorMessage">{{vm.errorMessage}}</div>
     <wait-cursor display-when="vm.isBusy"></wait-cursor>
-    <table st-table="displayedCollection"
+    <table id="MaterialsGrid"
+           st-table="displayedCollection"
            st-safe-src="vm.materials"
            class="table table-responsive table-striped table-condensed">
         <thead>
-            <tr>                
+            <tr>
+                <th></th>
                 <th st-sort="materialType.name">Type</th>
                 <th st-sort="name" st-sort-default="true">Name</th>
                 <th st-sort="brand">Brand</th>
@@ -18,23 +20,29 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="row in displayedCollection">                
+            <tr ng-repeat="row in displayedCollection">
+                <td class="col-xs-1">
+                    <div>
+                        <div class="btn-group btn-group-xs btn-group-justified">
+                            <button type="button"
+                                    class="btn-info"
+                                    ng-click="vm.selectItem(row)">
+                                <i class="glyphicon glyphicon-edit" title="Select"></i>
+                            </button>
+                            <button type="button"
+                                    class="btn-danger"
+                                    ng-click="vm.removeItem(row)">
+                                <i class="glyphicon glyphicon-remove" title="Remove"></i>
+                            </button>
+                        </div>
+                    </div>
+                </td>
                 <td class="col-md-2">{{ row.materialType.name }}</td>
                 <td class="col-md-2">{{ row.name }}</td>
                 <td class="col-md-2">{{ row.brand }}</td>
                 <td class="col-md-2">{{ row.model }}</td>
                 <td class="col-sm-2">{{ row.datePurchased | date : "dd-MM-yyyy" }}</td>
-                <td class="col-xs-1">{{ row.year }}</td>
-                <td class="col-xs-1">
-                    <a href="#" class="btn btn-xs btn-info">
-                        <i class="glyphicon glyphicon-edit" title="Edit"></i>
-                    </a>
-                </td>
-                <td class="col-xs-1">
-                    <button type="button" ng-click="removeRow(row)" class="btn btn-xs btn-danger">
-                        <i class="glyphicon glyphicon-remove" title="Remove"></i>
-                    </button>
-                </td>
+                <td class="col-xs-1">{{ row.year }}</td>                
             </tr>
         </tbody>
         <tfoot>
