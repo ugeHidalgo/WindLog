@@ -25,7 +25,7 @@
                 vm.isBusy = false;
             });        
 
-        vm.addMaterialType = function () {
+        vm.addItem = function () {
             vm.isBusy = true;
             vm.errorMessage = '';
 
@@ -42,14 +42,14 @@
                     });
         };
 
-        vm.selectRow = function (row) {
+        vm.selectItem = function (row) {
             var year, month, day;
 
             vm.materialTypeInForm = _copyRow(row);            
             year = row.dateCreated.slice(0, 4);
             month = row.dateCreated.slice(5, 7)-1;
             day = row.dateCreated.slice(8, 10);
-            vm.materialTypeInForm.dateCreated = new Date(year,month,day);
+            vm.materialTypeInForm.dateCreated = new Date(year,month,day,23,0,0);
         };
 
         vm.newItem = function () {
@@ -58,11 +58,11 @@
             vm.materialTypeInForm.dateCreated = new Date();
         };
 
-        vm.clearItem = function () {
+        vm.clearSelectedItem = function () {
             vm.materialTypeInForm = {};
         };
 
-        vm.removeRow = function (row) {
+        vm.removeItem = function (row) {
             vm.isBusy = true;
             $http.delete('/api/materialtypes/' + row.id)
                 .then(function (response) { //success                    
