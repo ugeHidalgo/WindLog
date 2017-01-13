@@ -1,14 +1,16 @@
 ﻿(function () {
     angular
         .module('app-materialTypes', [
-            'simpleControls',
+            'simpleControls', //Busy indicator
             'ngRoute',
-            'smart-table'])
+            'smart-table', //Grids
+            'lrDragNDrop'  //Drag and drop columns on grids.
+        ])
         .config(function ($routeProvider) {
             $routeProvider.when('/', {
                 controller: 'materialTypesController',
                 controllerAs: 'vm',
-                templateUrl: '/views/materialTypesView.html'
+                templateUrl: '/views/materialType/materialTypesView.html'
             });
 
             $routeProvider.otherwise({

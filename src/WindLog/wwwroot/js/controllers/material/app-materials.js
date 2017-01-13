@@ -8,7 +8,7 @@
             $routeProvider.when('/', {
                 controller: 'materialsController',
                 controllerAs: 'vm',
-                templateUrl: '/views/materialsView.html'
+                templateUrl: '/views/material/materialsView.html'
             });
 
             $routeProvider.otherwise({
