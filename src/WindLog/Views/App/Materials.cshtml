@@ -2,17 +2,20 @@
     ViewBag.Title = "Materials Page";
 }
 @section Scripts {
-    <script src="~/lib/angular/angular.min.js"></script>
+    <script src="~/lib/angular/angular.min.js"></script>    
     <script src="~/lib/angular-route/angular-route.min.js"></script>
+
     <script src="~/js/controllers/simpleControls.js"></script>
     <script src="~/lib/angular-smart-table/dist/smart-table.min.js"></script>
-    <script src="~/js/controllers/material/app-materials.js"></script>
+
+    <script src="~/js/controllers//material/app-materials.js"></script>
     <script src="~/js/controllers/material/materialsController.js"></script>
+    <script src="~/js/controllers/material/materialsEditorController.js"></script>
 }
 
 <h3 class="text-center">Materials</h3>
-<div ng-app="app-materials">
+<div class="row" ng-app="app-materials">
 
-    <div ng-view></div> @*materialsView.html in client side*@
+    <div ng-view></div>
 
 </div>

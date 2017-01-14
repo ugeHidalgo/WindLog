@@ -1,4 +1,9 @@
 ﻿<div class="col-md-12">
+    <a ng-href="#/editor/27" class="btn btn-sm btn-default">#/editor/27</a>
+    <a ng-href="#editor/27" class="btn btn-sm btn-primary">#editor/27</a>
+    <a ng-href="/editor/27" class="btn btn-sm btn-primary">/editor/27</a>
+    <a href="#editor/27" class="btn btn-sm btn-primary">href #/editor/27</a>
+
     <div class="text-danger" ng-show="vm.errorMessage">{{vm.errorMessage}}</div>
     <wait-cursor display-when="vm.isBusy"></wait-cursor>
     <table id="MaterialsGrid"
@@ -20,29 +25,35 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="row in displayedCollection">
+            <tr ng-repeat="material in displayedCollection">
                 <td class="col-xs-1">
                     <div>
                         <div class="btn-group btn-group-xs btn-group-justified">
                             <button type="button"
                                     class="btn-info"
-                                    ng-click="vm.selectItem(row)">
+                                    ng-click="vm.selectItem(material)">
                                 <i class="glyphicon glyphicon-edit" title="Select"></i>
                             </button>
                             <button type="button"
                                     class="btn-danger"
-                                    ng-click="vm.removeItem(row)">
+                                    ng-click="vm.removeItem(material)">
                                 <i class="glyphicon glyphicon-remove" title="Remove"></i>
                             </button>
                         </div>
                     </div>
                 </td>
-                <td class="col-md-2">{{ row.materialType.name }}</td>
-                <td class="col-md-2">{{ row.name }}</td>
-                <td class="col-md-2">{{ row.brand }}</td>
-                <td class="col-md-2">{{ row.model }}</td>
-                <td class="col-sm-2">{{ row.datePurchased | date : "dd-MM-yyyy" }}</td>
-                <td class="col-xs-1">{{ row.year }}</td>                
+                <td class="col-md-2">{{ material.materialType.name }}</td>
+                <td class="col-md-2">{{ material.name }}</td>
+                <td class="col-md-2">{{ material.brand }}</td>
+                <td class="col-md-2">{{ material.model }}</td>
+                <td class="col-sm-2">{{ material.datePurchased | date : "dd-MM-yyyy" }}</td>
+                <td class="col-xs-1">{{ material.year }}</td>
+                <td class="col-sm-1">
+                    <a href="#editor/{{material.id}}"
+                       class="btn btn-sm btn-info">                                   
+                       Edit
+                    </a>
+                </td>
             </tr>
         </tbody>
         <tfoot>

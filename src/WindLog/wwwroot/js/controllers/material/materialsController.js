@@ -3,7 +3,7 @@
 
     angular
         .module('app-materials')
-        .controller('materialsController', materialsController);
+        .controller('MaterialsController', materialsController);
 
     function materialsController($http) {
         var vm = this;

@@ -1,6 +1,6 @@
 {
-	"name": "asp.net",
-	"private": true,
+  "name": "asp.net",
+  "private": true,
   "dependencies": {
     "underscore": "1.8.3",
     "jquery": "3.1.1",
@@ -10,7 +10,10 @@
     "bootswatch": "~3.3.7",
     "font-awesome": "~4.7.0",
     "angular": "1.6.1",
-    "angular-route": "1.6.1",
-    "angular-smart-table" : "2.1.8"
+    "angular-route": "1.5.7",
+    "angular-smart-table": "2.1.8"
+  },
+  "resolutions": {
+    "angular": "^1.0.0"
   }
 }

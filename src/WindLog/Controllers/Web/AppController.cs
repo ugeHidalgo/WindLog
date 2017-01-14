@@ -55,15 +55,17 @@ namespace WindLog.Controllers.Web
         [Authorize]
         public IActionResult Materials()
         {
-            var data = _repository.GetAllMaterials(User.Identity.Name);
-            return View(data);
+            //var data = _repository.GetAllMaterials(User.Identity.Name);
+            //return View(data);
+            return View();
         }
 
         [Authorize]
         public IActionResult MaterialTypes()
         {
-            var data = _repository.GetAllMaterialTypes(User.Identity.Name);
-            return View(data);
+            //var data = _repository.GetAllMaterialTypes(User.Identity.Name);
+            //return View(data);
+            return View();
         }
     }
 }
