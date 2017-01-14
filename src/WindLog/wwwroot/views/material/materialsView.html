@@ -1,9 +1,4 @@
-﻿<div class="col-md-12">
-    <a ng-href="#/editor/27" class="btn btn-sm btn-default">#/editor/27</a>
-    <a ng-href="#editor/27" class="btn btn-sm btn-primary">#editor/27</a>
-    <a ng-href="/editor/27" class="btn btn-sm btn-primary">/editor/27</a>
-    <a href="#editor/27" class="btn btn-sm btn-primary">href #/editor/27</a>
-
+﻿<div class="col-md-12">    
     <div class="text-danger" ng-show="vm.errorMessage">{{vm.errorMessage}}</div>
     <wait-cursor display-when="vm.isBusy"></wait-cursor>
     <table id="MaterialsGrid"
@@ -49,7 +44,7 @@
                 <td class="col-sm-2">{{ material.datePurchased | date : "dd-MM-yyyy" }}</td>
                 <td class="col-xs-1">{{ material.year }}</td>
                 <td class="col-sm-1">
-                    <a href="#editor/{{material.id}}"
+                    <a href="editor/{{material.id}}"
                        class="btn btn-sm btn-info">                                   
                        Edit
                     </a>
