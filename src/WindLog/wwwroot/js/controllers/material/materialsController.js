@@ -9,7 +9,7 @@
         var vm = this;
 
         vm.materials = [];
-        vm.errorMessages = '';
+        vm.errorMessage = '';
         vm.isBusy = true;
         vm.itemsByPage = 10;
 
@@ -19,7 +19,7 @@
                 angular.copy(response.data, vm.materials);                
             }, function (error) {
                 //Failure
-                vm.errorMessages = 'Failed to load materials: ' + error;
+                vm.errorMessage = 'Failed to load materials: ' + error;
             })
             .finally(function () {
                 vm.isBusy = false;

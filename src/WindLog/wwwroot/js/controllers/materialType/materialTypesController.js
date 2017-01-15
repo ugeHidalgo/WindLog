@@ -9,7 +9,7 @@
         var vm = this;
         vm.materialTypes = [];
         vm.materialTypeInForm = {};
-        vm.errorMessages = '';
+        vm.errorMessage = '';
         vm.isBusy = true;
         vm.itemsByPage = 8;
 
@@ -19,7 +19,7 @@
                 angular.copy(response.data, vm.materialTypes);
             }, function (error) {
                 //Failure
-                vm.errorMessages = 'Failed to load material types: ' + error;
+                vm.errorMessage = 'Failed to load material types: ' + error;
             })
             .finally(function () {
                 vm.isBusy = false;
@@ -27,7 +27,7 @@
 
         vm.addItem = function () {
             vm.isBusy = true;
-            vm.errorMessage = '';
+            vm.errorMessages = '';
 
             $http.post('/api/materialtypes', vm.materialTypeInForm)
                     .then(function (response) { //Success
@@ -45,11 +45,8 @@
         vm.selectItem = function (row) {
             var year, month, day;
 
-            vm.materialTypeInForm = _copyRow(row);            
-            year = row.dateCreated.slice(0, 4);
-            month = row.dateCreated.slice(5, 7)-1;
-            day = row.dateCreated.slice(8, 10);
-            vm.materialTypeInForm.dateCreated = new Date(year,month,day,23,0,0);
+            vm.materialTypeInForm = _copyRow(row);
+            vm.materialTypeInForm.dateCreated = parseDate(vm.materialTypeInForm.dateCreated);            
         };
 
         vm.newItem = function () {
@@ -68,6 +65,7 @@
                 .then(function (response) { //success                    
                     vm.materialTypes = _removeItemFromArray(vm.materialTypes, row.id);
                 }, function () { //Failure
+                    vm.errorMessage = 'Failed to delete material type with id ' + row.id + ':' + error;
                 })
                 .finally(function () {
                     vm.isBusy = false;
@@ -85,7 +83,7 @@ _getMaterialTypes = function (http) {
         angular.copy(response.data, materialTypes);
     }, function (error) {
         //Failure
-        //vm.errorMessages = 'Failed to load material types: ' + error;
+        vm.errorMessages = 'Failed to load material types: ' + error;
     })
     .finally(function () {        
     });

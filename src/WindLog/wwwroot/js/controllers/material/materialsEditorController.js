@@ -17,16 +17,8 @@
             .then(function (response) {
                 //Success
                 angular.copy(response.data, vm.material);
-
-                year = vm.material.datePurchased.slice(0, 4);
-                month = vm.material.datePurchased.slice(5, 7) - 1;
-                day = vm.material.datePurchased.slice(8, 10);
-                vm.material.datePurchased = new Date(year, month, day, 23, 0, 0);
-
-                year = vm.material.dateCreated.slice(0, 4);
-                month = vm.material.dateCreated.slice(5, 7) - 1;
-                day = vm.material.dateCreated.slice(8, 10);
-                vm.material.dateCreated = new Date(year, month, day, 23, 0, 0);
+                vm.material.datePurchased = parseDate(vm.material.datePurchased);
+                vm.material.dateCreated = parseDate(vm.material.dateCreated);                
             }, function (error) {
                 //Failure
                 vm.errorMessage = 'Failed to load material with id ' + vm.id + ' : ' + error;
