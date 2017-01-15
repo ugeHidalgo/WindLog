@@ -24,15 +24,15 @@
                 <td class="col-xs-1">
                     <div>
                         <div class="btn-group btn-group-xs btn-group-justified">
-                            <button type="button"
-                                    class="btn-info"
-                                    ng-click="vm.selectItem(material)">
+                            <a type="button"
+                                    class="btn-sm btn-info"
+                                    href="editor/{{material.id}}">
                                 <i class="glyphicon glyphicon-edit" title="Select"></i>
-                            </button>
+                            </a>
                             <button type="button"
                                     class="btn-danger"
                                     ng-click="vm.removeItem(material)">
-                                <i class="glyphicon glyphicon-remove" title="Remove"></i>
+                                <i class="fa fa-remove" title="Remove"></i>
                             </button>
                         </div>
                     </div>
@@ -42,13 +42,7 @@
                 <td class="col-md-2">{{ material.brand }}</td>
                 <td class="col-md-2">{{ material.model }}</td>
                 <td class="col-sm-2">{{ material.datePurchased | date : "dd-MM-yyyy" }}</td>
-                <td class="col-xs-1">{{ material.year }}</td>
-                <td class="col-sm-1">
-                    <a href="editor/{{material.id}}"
-                       class="btn btn-sm btn-info">                                   
-                       Edit
-                    </a>
-                </td>
+                <td class="col-xs-1">{{ material.year }}</td>                
             </tr>
         </tbody>
         <tfoot>
