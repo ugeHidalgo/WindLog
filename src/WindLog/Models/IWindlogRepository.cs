@@ -16,5 +16,6 @@ namespace WindLog.Models
         bool RemoveMaterialType(int id, string username);
 
         Task<bool> SaveChangesAsync();
+        Material GetMaterialById(int id, string userName);
     }
 }

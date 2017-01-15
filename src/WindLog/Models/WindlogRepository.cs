@@ -22,6 +22,13 @@ namespace WindLog.Models
                 .Where(x => x.UserName == userName);
         }
 
+        public Material GetMaterialById(int id, string userName)
+        {
+            return _context.Materials
+                .Include(x => x.MaterialType)
+                .FirstOrDefault(x => x.UserName == userName && x.Id == id);
+        }
+
         public IEnumerable<MaterialType> GetAllMaterialTypes(string userName)
         {
             return _context.MaterialTypes
