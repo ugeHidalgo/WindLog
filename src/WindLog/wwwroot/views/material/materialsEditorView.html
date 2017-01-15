@@ -1,10 +1,127 @@
 ﻿<div>
-    <div>
-        <a href="../../" class="btn btn-sm btn-default">
-            <i class="fa fa-angle-left"></i>Back
-        </a>
-    </div>
-    <div>
-        <h3>Selected material with id : {{ vm.material.id }}</h3>        
+    <div id="MaterialForm" class="col-md-12">
+        <form novalidate name="materialForm" ng-submit="vm.addItem()" class="form-horizontal">
+            <div id="materialDates" class="form-group">
+
+                <div class="col-md-4 col-md-offset-1">
+                    <label class="control-label">Type</label>
+                    <input class="form-control" type="text" id="typeName" name="typeName"
+                           ng-model="vm.material.materialType.name"
+                           required
+                           ng-minlength="3" />
+                    <span ng-show="materialForm.materialType.name.$error.required"
+                          class="text-warning">Valor obligatorio.</span>
+                    <span ng-show="materialForm.materialType.name.$error.minlength"
+                          class="text-warning">Longitud minima de 3 caracteres.</span>
+                </div>
+                
+                <div class="col-md-2 date">
+                    <label class="control-label">Created</label>
+                    <div class="input-group input-append date" id="datePicker">
+                        <input class="form-control" type="date" id="dateCreated" name="dateCreated"
+                               required
+                               ng-model="vm.material.dateCreated" />
+                        <span class="input-group-addon add-on">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+                
+                
+                <div class="col-md-2 col-md-offset-1 date">
+                    <label class="control-label">Purchased</label>
+                    <div class="input-group input-append date" id="datePicker">
+                        <input class="form-control" 
+                               type="date" id="datePurchased" name="datePurchased"
+                               required
+                               ng-model="vm.material.datePurchased" />
+                        <span class="input-group-addon add-on">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="materialNames" class="form-group">
+
+                <div class="col-md-3 col-md-offset-1">
+                    <label class="control-label">Name</label>
+                    <input class="form-control" type="text" id="name" name="name"
+                           ng-model="vm.material.name"
+                           required
+                           ng-minlength="3" />
+                    <span ng-show="materialForm.name.$error.required"
+                          class="text-warning">Valor obligatorio.</span>
+                    <span ng-show="materialForm.name.$error.minlength"
+                          class="text-warning">Longitud minima de 3 caracteres.</span>
+                </div>
+                
+                <div class="col-md-3">
+                    <label class="control-label">Model</label>
+                    <input class="form-control" type="text" id="model" name="model"
+                           ng-model="vm.material.model"
+                           required
+                           ng-minlength="3" />
+                    <span ng-show="materialForm.model.$error.required"
+                          class="text-warning">Valor obligatorio.</span>
+                    <span ng-show="materialForm.model.$error.minlength"
+                          class="text-warning">Longitud minima de 3 caracteres.</span>
+                </div>
+                
+                <div class="col-md-3">
+                    <label class="control-label">Brand</label>
+                    <input class="form-control" type="text" id="brand" name="brand"
+                           ng-model="vm.material.brand"
+                           required
+                           ng-minlength="3" />
+                    <span ng-show="materialForm.brand.$error.required"
+                          class="text-warning">Valor obligatorio.</span>
+                    <span ng-show="materialForm.brand.$error.minlength"
+                          class="text-warning">Longitud minima de 3 caracteres.</span>
+                </div>
+
+                <div class="col-md-1">
+                    <label class="control-label">Year</label>
+                    <input class="form-control" type="text" id="year" name="year"
+                           ng-model="vm.material.year" />                   
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-10 col-md-offset-1">
+                    <label class="control-label">Observ.</label>
+                    <textarea class="form-control" cols="80" rows="4" id="memo" name="memo"
+                              ng-model="vm.material.memo"></textarea>
+                </div>
+            </div>
+
+            <div id="formButtons" class="form-group">
+                <a class="btn btn-sm btn-default col-md-offset-1"
+                   href="../../">
+                    <i class="fa fa-list"></i> Back to materials grid
+                </a>
+                <a class="btn btn-sm btn-default"
+                   ng-click="vm.newItem()">
+                    <i class="fa fa-edit"></i>
+                    New
+                </a>
+                <a class="btn btn-sm btn-default"
+                   ng-click="vm.clearSelectedItem()">
+                    <i class="fa fa-eraser"></i>
+                    Clear
+                </a>
+                <a class="btn btn-sm btn-default"
+                   ng-click="vm.deleteSelectedItem()">
+                    <i class="fa fa-remove"></i>
+                    Delete
+                </a>
+                <a class="btn btn-danger btn-sm"
+                   ng-click="vm.addItem()"
+                   ng-disabled="materialForm.$invalid">
+                    <i class="fa fa-save"></i>
+                    Save
+                </a>
+            </div>
+        </form>
     </div>
 </div>
