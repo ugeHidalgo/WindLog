@@ -7,6 +7,7 @@
 
     function materialsController($http) {
         var vm = this;
+
         vm.materials = [];
         vm.errorMessages = '';
         vm.isBusy = true;
@@ -15,7 +16,7 @@
         $http.get('/api/materials')
             .then(function (response) {
                 //Success
-                angular.copy(response.data, vm.materials);
+                angular.copy(response.data, vm.materials);                
             }, function (error) {
                 //Failure
                 vm.errorMessages = 'Failed to load materials: ' + error;

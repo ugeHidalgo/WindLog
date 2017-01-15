@@ -80,7 +80,7 @@ namespace WindLog.Models
                 var materials = new List<Material>() {
                 new Material() { Name = "Titan", MaterialType = board, Brand = "Naish", Model="Titan", Year =2004, Purchase= new DateTime(2016,4,2), Memo = "Naish Titan comprada en Marbella." },
                 new Material() { Name = "Rocket95", MaterialType = board, Brand = "Tabou", Model="Rocket 95", Year =2010, Purchase= new DateTime(2016,5,27), Memo = "Comprada a SpinOut Tarifa." },
-                new Material() { Name = "RRDQuad", MaterialType = board, Brand = "RRD", Model="WabeCult LTD 83", Year =2014, Purchase= new DateTime(2016,9,5), Memo = "Comprada a Ozu Tarifa." },
+                new Material() { Name = "RRDQuad", MaterialType = board, Brand = "RRD", Model="WaveCult LTD 83", Year =2014, Purchase= new DateTime(2016,9,5), Memo = "Comprada a Ozu Tarifa." },
                 new Material() { Name = "NaishWave", MaterialType = board, Brand = "Mistral", Model="Naish 8.5", Year =2000, Purchase= new DateTime(2016,4,30), Memo = "Regalada por Luisli." },
                 new Material() { Name = "HotSails42", MaterialType = sail, Brand = "Hot Sails", Model="Legend 4.2", Year =2008, Purchase= new DateTime(2016,2,25),  Memo = "Comprada por facebook en Valencia." },
                 new Material() { Name = "GaMa47", MaterialType = sail, Brand = "Gaastra", Model="Manic 4.7", Year =2006, Purchase= new DateTime(2016,5,9), Memo = "Comprada por totalwind." },
@@ -90,8 +90,8 @@ namespace WindLog.Models
                 new Material() { Name = "N370SDM", MaterialType = mast, Brand = "North Sails", Model="Drop Shape 370 100%", Year =2008, Purchase= new DateTime(2016,2,25), Memo = "Comprado por facebook" },
                 new Material() { Name = "P400RDM", MaterialType = mast, Brand = "Point7", Model="400 60%", Year =2015, Purchase= new DateTime(2016,4,15), Memo = "Comprado a Manu." },
                 new Material() { Name = "G430RDM", MaterialType = mast, Brand = "Gun Sails", Model="Cross 430 50%", Year =2016, Purchase= new DateTime(2016,6,14), Memo = "Comprado en la web de Gun nuevo." },
-                new Material() { Name = "B3140", MaterialType = boom, Brand = "B3", Model="130", Year =2016, Purchase= new DateTime(2016,4,16), Memo = "Comprada en la web de B3 nueva." },
-                new Material() { Name = "B3160", MaterialType = boom, Brand = "B3", Model="160", Year =2016, Purchase= new DateTime(2016,6,14), Memo = "Comprada en la web de B3 nueva." }
+                new Material() { Name = "B3140", MaterialType = boom, Brand = "B3 Watersports", Model="130", Year =2016, Purchase= new DateTime(2016,4,16), Memo = "Comprada en la web de B3 nueva." },
+                new Material() { Name = "B3160", MaterialType = boom, Brand = "B3 Watersports", Model="160", Year =2016, Purchase= new DateTime(2016,6,14), Memo = "Comprada en la web de B3 nueva." }
                 };
                 foreach (var material in materials)
                 {
