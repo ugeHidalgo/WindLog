@@ -10,22 +10,11 @@
 
         vm.id = $routeParams.materialId;
         vm.errorMessage = '';
-        vm.isBusy = true;
-        vm.material = {};                
+        vm.isBusy = true;                
 
-        $http.get('/api/materials/' + vm.id)
-            .then(function (response) {
-                //Success
-                angular.copy(response.data, vm.material);
-                vm.material.datePurchased = parseDate(vm.material.datePurchased);
-                vm.material.dateCreated = parseDate(vm.material.dateCreated);                
-            }, function (error) {
-                //Failure
-                vm.errorMessage = 'Failed to load material with id ' + vm.id + ' : ' + error;
-            })
-            .finally(function () {
-                vm.isBusy = false;
-            });
+        vm.materialTypes = _getMaterialTypes($http, function () {
+            vm.material = _getMaterial($http, vm.id);
+        });        
 
         vm.newItem = function () {
             vm.material = {};
@@ -40,3 +29,42 @@
         };
     }
 })();
+
+_getMaterialTypes = function (http, callbackFn) {
+    var materialTypes = [];
+
+    http.get('/api/materialtypes')
+        .then(function (response) {
+            //Success
+            angular.copy(response.data, materialTypes);
+            callbackFn();
+        }, function (error) {
+            //Failure
+            vm.errorMessages = 'Failed to load material types: ' + error;
+        })
+        .finally(function () {
+    });
+
+    return materialTypes;
+}
+
+
+_getMaterial = function (http, materialId) {
+    var material = {};
+
+    http.get('/api/materials/' + materialId)
+        .then(function (response) {
+                //Success
+                angular.copy(response.data, material);
+                material.datePurchased = parseDate(material.datePurchased);
+                material.dateCreated = parseDate(material.dateCreated);
+        }, function (error) {
+                //Failure
+                vm.errorMessage = 'Failed to load material with id ' + vm.id + ' : ' + error;
+        })
+        .finally(function () {
+                vm.isBusy = false;
+        });
+
+    return material;
+}
