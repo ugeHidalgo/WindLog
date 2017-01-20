@@ -20,8 +20,8 @@
             name: 'Active'
         }];
 
-        vm.materialTypes = _getMaterialTypes($http, function () {
-            vm.material = _getMaterial($http, vm.id);
+        vm.materialTypes = _getMaterialTypes($http, vm, function () {
+            vm.material = _getMaterial($http, vm);
         });        
 
         vm.newItem = function () {
@@ -38,29 +38,29 @@
     }
 })();
 
-_getMaterialTypes = function (http, callbackFn) {
+_getMaterialTypes = function (http, vm, callbackFn) {
     var materialTypes = [];
 
     http.get('/api/materialtypes')
         .then(function (response) {
             //Success
-            angular.copy(response.data, materialTypes);
+            angular.copy(response.data, materialTypes);            
             callbackFn();
         }, function (error) {
             //Failure
             vm.errorMessages = 'Failed to load material types: ' + error;
         })
-        .finally(function () {
+        .finally(function () {            
     });
 
     return materialTypes;
 }
 
 
-_getMaterial = function (http, materialId) {
+_getMaterial = function (http, vm ) {
     var material = {};
-
-    http.get('/api/materials/' + materialId)
+    
+    http.get('/api/materials/' + vm.id)
         .then(function (response) {
                 //Success
                 angular.copy(response.data, material);

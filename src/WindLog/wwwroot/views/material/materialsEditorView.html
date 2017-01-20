@@ -1,5 +1,7 @@
 ﻿<div>
     <div id="MaterialForm" class="col-md-12">
+        <div class="text-danger" ng-show="vm.errorMessage">{{vm.errorMessage}}</div>
+        <wait-cursor display-when="vm.isBusy"></wait-cursor>
         <form novalidate name="materialForm" ng-submit="vm.addItem()" class="form-horizontal">
 
             <div id="materialNames" class="form-group">
