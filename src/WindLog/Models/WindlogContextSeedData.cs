@@ -24,12 +24,10 @@ namespace WindLog.Models
         public async Task SeedData()
         {
             await SeedManagerUser();
-            SeedMaterialTypesData();
-            SeedMaterialsData();
-            SeedSpotsAndSessionsData();
-            SeedSessionsData();
-
-            await _context.SaveChangesAsync();
+            await SeedMaterialTypesData();
+            await SeedMaterialsData();
+            await SeedSpotsAndSessionsData();
+            await SeedSessionsData();            
         }
 
         #region Private Methods
@@ -49,7 +47,7 @@ namespace WindLog.Models
             }
         }               
 
-        private void SeedMaterialTypesData()
+        private async Task SeedMaterialTypesData()
         {
             if (!_context.MaterialTypes.Any())
             {
@@ -65,10 +63,11 @@ namespace WindLog.Models
                     materialType.Created = DateTime.Now;
                     _context.MaterialTypes.Add(materialType);
                 }
-            }          
+                await _context.SaveChangesAsync();
+            }            
         }
 
-        private void SeedMaterialsData()
+        private async Task SeedMaterialsData()
         {
             if (!_context.Materials.Any())
             {
@@ -78,20 +77,20 @@ namespace WindLog.Models
                 var boom = _context.MaterialTypes.FirstOrDefault(x => x.Name == "Boom");
 
                 var materials = new List<Material>() {
-                new Material() { Name = "Titan", MaterialType = board, Brand = "Naish", Model="Titan", Year =2004, Purchase= new DateTime(2016,4,2), Memo = "Naish Titan comprada en Marbella." },
-                new Material() { Name = "Rocket95", MaterialType = board, Brand = "Tabou", Model="Rocket 95", Year =2010, Purchase= new DateTime(2016,5,27), Memo = "Comprada a SpinOut Tarifa." },
-                new Material() { Name = "RRDQuad", MaterialType = board, Brand = "RRD", Model="WaveCult LTD 83", Year =2014, Purchase= new DateTime(2016,9,5), Memo = "Comprada a Ozu Tarifa." },
-                new Material() { Name = "NaishWave", MaterialType = board, Brand = "Mistral", Model="Naish 8.5", Year =2000, Purchase= new DateTime(2016,4,30), Memo = "Regalada por Luisli." },
-                new Material() { Name = "HotSails42", MaterialType = sail, Brand = "Hot Sails", Model="Legend 4.2", Year =2008, Purchase= new DateTime(2016,2,25),  Memo = "Comprada por facebook en Valencia." },
-                new Material() { Name = "GaMa47", MaterialType = sail, Brand = "Gaastra", Model="Manic 4.7", Year =2006, Purchase= new DateTime(2016,5,9), Memo = "Comprada por totalwind." },
-                new Material() { Name = "P7Slash52", MaterialType = sail, Brand = "Point7", Model="Slash 5.2", Year =2014, Purchase= new DateTime(2016,4,15), Memo = "Comprada a Manu." },
-                new Material() { Name = "P7Sado59", MaterialType = sail, Brand = "Point7", Model="Sado 5.9", Year =2014, Purchase= new DateTime(2016,4,15), Memo = "Comprada a Manu." },
-                new Material() { Name = "GaCr64", MaterialType = sail, Brand = "Gaastra", Model="Cross 6.4", Year =2014, Purchase= new DateTime(2016,6,20), Memo = "Comprada por mil anuncios a Pepe." },
-                new Material() { Name = "N370SDM", MaterialType = mast, Brand = "North Sails", Model="Drop Shape 370 100%", Year =2008, Purchase= new DateTime(2016,2,25), Memo = "Comprado por facebook" },
-                new Material() { Name = "P400RDM", MaterialType = mast, Brand = "Point7", Model="400 60%", Year =2015, Purchase= new DateTime(2016,4,15), Memo = "Comprado a Manu." },
-                new Material() { Name = "G430RDM", MaterialType = mast, Brand = "Gun Sails", Model="Cross 430 50%", Year =2016, Purchase= new DateTime(2016,6,14), Memo = "Comprado en la web de Gun nuevo." },
-                new Material() { Name = "B3140", MaterialType = boom, Brand = "B3 Watersports", Model="130", Year =2016, Purchase= new DateTime(2016,4,16), Memo = "Comprada en la web de B3 nueva." },
-                new Material() { Name = "B3160", MaterialType = boom, Brand = "B3 Watersports", Model="160", Year =2016, Purchase= new DateTime(2016,6,14), Memo = "Comprada en la web de B3 nueva." }
+                new Material() { Name = "Titan", MaterialType = board, Brand = "Naish", Model="Titan", Year =2004, Purchase= new DateTime(2016,4,2), Memo = "Naish Titan comprada en Marbella.", SecondHand = true },
+                new Material() { Name = "Rocket95", MaterialType = board, Brand = "Tabou", Model="Rocket 95", Year =2010, Purchase= new DateTime(2016,5,27), Memo = "Comprada a SpinOut Tarifa.", SecondHand = true },
+                new Material() { Name = "RRDQuad", MaterialType = board, Brand = "RRD", Model="WaveCult LTD 83", Year =2014, Purchase= new DateTime(2016,9,5), Memo = "Comprada a Ozu Tarifa.", SecondHand = true },
+                new Material() { Name = "NaishWave", MaterialType = board, Brand = "Mistral", Model="Naish 8.5", Year =2000, Purchase= new DateTime(2016,4,30), Memo = "Regalada por Luisli.", SecondHand = true },
+                new Material() { Name = "HotSails42", MaterialType = sail, Brand = "Hot Sails", Model="Legend 4.2", Year =2008, Purchase= new DateTime(2016,2,25),  Memo = "Comprada por facebook en Valencia.", SecondHand = true },
+                new Material() { Name = "GaMa47", MaterialType = sail, Brand = "Gaastra", Model="Manic 4.7", Year =2006, Purchase= new DateTime(2016,5,9), Memo = "Comprada por totalwind.", SecondHand = true },
+                new Material() { Name = "P7Slash52", MaterialType = sail, Brand = "Point7", Model="Slash 5.2", Year =2014, Purchase= new DateTime(2016,4,15), Memo = "Comprada a Manu.", SecondHand = true },
+                new Material() { Name = "P7Sado59", MaterialType = sail, Brand = "Point7", Model="Sado 5.9", Year =2014, Purchase= new DateTime(2016,4,15), Memo = "Comprada a Manu.", SecondHand = true },
+                new Material() { Name = "GaCr64", MaterialType = sail, Brand = "Gaastra", Model="Cross 6.4", Year =2014, Purchase= new DateTime(2016,6,20), Memo = "Comprada por mil anuncios a Pepe.", SecondHand = true },
+                new Material() { Name = "N370SDM", MaterialType = mast, Brand = "North Sails", Model="Drop Shape 370 100%", Year =2008, Purchase= new DateTime(2016,2,25), Memo = "Comprado por facebook", SecondHand = true },
+                new Material() { Name = "P400RDM", MaterialType = mast, Brand = "Point7", Model="400 60%", Year =2015, Purchase= new DateTime(2016,4,15), Memo = "Comprado a Manu.", SecondHand = true },
+                new Material() { Name = "G430RDM", MaterialType = mast, Brand = "Gun Sails", Model="Cross 430 50%", Year =2016, Purchase= new DateTime(2016,6,14), Memo = "Comprado en la web de Gun nuevo.", SecondHand = false },
+                new Material() { Name = "B3140", MaterialType = boom, Brand = "B3 Watersports", Model="130", Year =2016, Purchase= new DateTime(2016,4,16), Memo = "Comprada en la web de B3 nueva.", SecondHand = false },
+                new Material() { Name = "B3160", MaterialType = boom, Brand = "B3 Watersports", Model="160", Year =2016, Purchase= new DateTime(2016,6,14), Memo = "Comprada en la web de B3 nueva.", SecondHand = false }
                 };
                 foreach (var material in materials)
                 {
@@ -99,10 +98,12 @@ namespace WindLog.Models
                     material.Created = DateTime.Now;
                     _context.Materials.Add(material);
                 }
+
+                await _context.SaveChangesAsync();
             }
         }
 
-        private void SeedSpotsAndSessionsData()
+        private async Task SeedSpotsAndSessionsData()
         {
 
             if (!_context.Spots.Any())
@@ -144,10 +145,11 @@ namespace WindLog.Models
                     session.Created = DateTime.Now;
                     _context.Sessions.Add(session);
                 }
+                await _context.SaveChangesAsync();
             }
         }
 
-        private void SeedSessionsData()
+        private async Task SeedSessionsData()
         {
 
             if (!_context.SessionMaterials.Any())
@@ -183,6 +185,8 @@ namespace WindLog.Models
                 AddMaterialsToSession(_context, valde1, new Material[] { titan, p7Sado, p400, b3140 });
                 AddMaterialsToSession(_context, valde2, new Material[] { titan, p7Sado, p400, b3140 });
                 AddMaterialsToSession(_context, ponde2, new Material[] { rocket, p7Slash, p400, b3140 });
+
+                await _context.SaveChangesAsync();
             }
         }
 

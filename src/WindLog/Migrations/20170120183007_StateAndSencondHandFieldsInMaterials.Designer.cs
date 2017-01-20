@@ -8,9 +8,10 @@ using WindLog.Models;
 namespace WindLog.Migrations
 {
     [DbContext(typeof(WindlogContext))]
-    partial class WindlogContextModelSnapshot : ModelSnapshot
+    [Migration("20170120183007_StateAndSencondHandFieldsInMaterials")]
+    partial class StateAndSencondHandFieldsInMaterials
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.1")
@@ -144,7 +145,7 @@ namespace WindLog.Migrations
 
                     b.Property<bool>("SecondHand");
 
-                    b.Property<int>("State");
+                    b.Property<bool>("State");
 
                     b.Property<string>("UserName");
 

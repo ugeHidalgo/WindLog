@@ -8,9 +8,10 @@ using WindLog.Models;
 namespace WindLog.Migrations
 {
     [DbContext(typeof(WindlogContext))]
-    partial class WindlogContextModelSnapshot : ModelSnapshot
+    [Migration("20170120183404_StateFieldsInMaterialsChangedToInt")]
+    partial class StateFieldsInMaterialsChangedToInt
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.1")
