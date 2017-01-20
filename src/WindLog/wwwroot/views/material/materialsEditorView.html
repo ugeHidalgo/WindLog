@@ -1,47 +1,6 @@
 ﻿<div>
     <div id="MaterialForm" class="col-md-12">
         <form novalidate name="materialForm" ng-submit="vm.addItem()" class="form-horizontal">
-            <div id="materialTypeAndDates" class="form-group">
-
-                <div class="col-md-3 col-md-offset-1">
-                    <label class="control-label">Type</label>
-                    <select class="form-control" id="typeName" name="typeName"
-                           ng-model="vm.material.materialType"
-                           ng-options="type.name for type in vm.materialTypes track by type.id"
-                           required>
-                    </select>
-                    <span ng-show="materialForm.materialType.name.$error.required"
-                          class="text-warning">Valor obligatorio.</span>
-                    <span ng-show="materialForm.materialType.name.$error.minlength"
-                          class="text-warning">Longitud minima de 3 caracteres.</span>
-                </div>
-                
-                <div class="col-md-2 date">
-                    <label class="control-label">Created</label>
-                    <div class="input-group input-append date" id="datePicker">
-                        <input class="form-control" type="date" id="dateCreated" name="dateCreated"
-                               required
-                               ng-model="vm.material.dateCreated" />
-                        <span class="input-group-addon add-on">
-                            <span class="glyphicon glyphicon-calendar"></span>
-                        </span>
-                    </div>
-                </div>
-                
-                
-                <div class="col-md-2 col-md-offset-1 date">
-                    <label class="control-label">Purchased</label>
-                    <div class="input-group input-append date" id="datePicker">
-                        <input class="form-control" 
-                               type="date" id="datePurchased" name="datePurchased"
-                               required
-                               ng-model="vm.material.datePurchased" />
-                        <span class="input-group-addon add-on">
-                            <span class="glyphicon glyphicon-calendar"></span>
-                        </span>
-                    </div>
-                </div>
-            </div>
 
             <div id="materialNames" class="form-group">
 
@@ -56,7 +15,7 @@
                     <span ng-show="materialForm.name.$error.minlength"
                           class="text-warning">Longitud minima de 3 caracteres.</span>
                 </div>
-                
+
                 <div class="col-md-3">
                     <label class="control-label">Model</label>
                     <input class="form-control" type="text" id="model" name="model"
@@ -68,7 +27,7 @@
                     <span ng-show="materialForm.model.$error.minlength"
                           class="text-warning">Longitud minima de 3 caracteres.</span>
                 </div>
-                
+
                 <div class="col-md-3">
                     <label class="control-label">Brand</label>
                     <input class="form-control" type="text" id="brand" name="brand"
@@ -79,14 +38,71 @@
                           class="text-warning">Valor obligatorio.</span>
                     <span ng-show="materialForm.brand.$error.minlength"
                           class="text-warning">Longitud minima de 3 caracteres.</span>
-                </div>
+                </div>                
+            </div>
+
+            <div id="materialTypeAndYear" class="form-group">
+                <div class="col-md-3 col-md-offset-1">
+                    <label class="control-label">Type</label>
+                    <select class="form-control" id="typeName" name="typeName"
+                            ng-model="vm.material.materialType"
+                            ng-options="type.name for type in vm.materialTypes track by type.id"
+                            required></select>
+                    <span ng-show="materialForm.materialType.name.$error.required"
+                          class="text-warning">Valor obligatorio.</span>
+                    <span ng-show="materialForm.materialType.name.$error.minlength"
+                          class="text-warning">Longitud minima de 3 caracteres.</span>
+                </div>                                
 
                 <div class="col-md-1">
                     <label class="control-label">Year</label>
                     <input class="form-control" type="text" id="year" name="year"
-                           ng-model="vm.material.year" />                   
+                           ng-model="vm.material.year" />
                 </div>
             </div>
+
+            <div id="statesAndDates" class="form-group">
+                <div class="col-md-2 col-md-offset-1 date">
+                    <label class="control-label">Created</label>
+                    <div class="input-group input-append date" id="datePicker">
+                        <input class="form-control" type="date" id="dateCreated" name="dateCreated"
+                               required
+                               ng-model="vm.material.dateCreated" />
+                        <span class="input-group-addon add-on">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-md-2 date col-md-offset-1">
+                    <label class="control-label">Purchased</label>
+                    <div class="input-group input-append date" id="datePicker">
+                        <input class="form-control"
+                               type="date" id="datePurchased" name="datePurchased"
+                               required
+                               ng-model="vm.material.datePurchased" />
+                        <span class="input-group-addon add-on">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-md-1 col-md-offset-1 ">
+                    <label class="control-label">Second Hand</label>
+                    <input class="form-control" type="text" id="secondHand" name="secondHand"
+                           ng-model="vm.material.secondHand" />
+                </div>
+
+                <div class="col-md-2">
+                    <label class="control-label">State</label>                    
+                    <select class="form-control" id="state" name="state"
+                            ng-model="vm.material.state"
+                            ng-options="state.name for state in vm.materialStates track by vm.material.state"
+                            required></select>
+                    <span ng-show="materialForm.state.$error.required"
+                          class="text-warning">Valor obligatorio.</span>                    
+                </div>                                
+            </div>            
 
             <div class="form-group">
                 <div class="col-md-10 col-md-offset-1">

@@ -10,7 +10,15 @@
 
         vm.id = $routeParams.materialId;
         vm.errorMessage = '';
-        vm.isBusy = true;                
+        vm.isBusy = true;
+
+        vm.materialStates = [{
+            id: 0,
+            name: 'Not used'
+        }, {
+            id: 1,
+            name: 'Active'
+        }];
 
         vm.materialTypes = _getMaterialTypes($http, function () {
             vm.material = _getMaterial($http, vm.id);

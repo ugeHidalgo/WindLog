@@ -29,6 +29,11 @@ namespace WindLog.ViewModels
 
         public string Memo { get; set; }
 
+        public bool SecondHand { get; set; }
+
+        [Required]
+        public int State { get; set; } = 1; //1 Active. 0 Not used.
+
         public MaterialType MaterialType { get; set; }
     }
 }
