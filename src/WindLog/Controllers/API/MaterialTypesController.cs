@@ -11,7 +11,6 @@ using WindLog.ViewModels;
 namespace WindLog.Controllers.API
 {
     [Authorize]
-    //[Route("api/materialtypes")]
     public class MaterialTypesController : Controller
     {
         private ILogger<MaterialTypesController> _logger;

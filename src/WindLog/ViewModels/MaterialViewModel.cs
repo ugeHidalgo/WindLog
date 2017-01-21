@@ -11,13 +11,14 @@ namespace WindLog.ViewModels
         public string UserName { get; set; }
 
         [Required]
-        [StringLength(20, MinimumLength = 5)]
+        [StringLength(20)]
         public string Name { get; set; }
 
         [Required]
-        [StringLength(20, MinimumLength = 5)]
+        [StringLength(20)]
         public string Brand { get; set; }
 
+        [Required]
         [StringLength(20)]
         public string Model { get; set; }
 
@@ -31,9 +32,8 @@ namespace WindLog.ViewModels
 
         public bool SecondHand { get; set; }
 
-        [Required]
         public bool State { get; set; }
 
-        public MaterialType MaterialType { get; set; }
+        public MaterialTypeViewModel MaterialTypeViewModel { get; set; }
     }
 }

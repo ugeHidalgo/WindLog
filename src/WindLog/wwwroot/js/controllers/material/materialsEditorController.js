@@ -10,26 +10,35 @@
 
         vm.id = $routeParams.materialId;
         vm.errorMessage = '';
-        vm.isBusy = true;
-
-        vm.materialStates = [{
-            id: 0,
-            name: 'Not used'
-        }, {
-            id: 1,
-            name: 'Active'
-        }];
+        vm.isBusy = true;        
 
         vm.materialTypes = _getMaterialTypes($http, vm, function () {
             vm.material = _getMaterial($http, vm);
-        });        
+        });
+
+        vm.addItem = function () {
+            vm.isBusy = true;
+            vm.errorMessages = '';
+
+            $http.post('/api/materials', vm.material)
+                    .then(function (response) { //Success                                            
+                        vm.material = {};
+                    }, function (error) { //Failure
+                        vm.errorMessage = 'Failed to save new material :' + error;
+                    })
+                    .finally(function () {
+                        vm.isBusy = false;
+                    });
+        };
 
         vm.newItem = function () {
             vm.material = {};
             vm.id = 0;
-            vm.materialId = 0;
+            vm.material.id = 0;
             vm.material.dateCreated = new Date();
             vm.material.datePurchased = new Date();
+            vm.material.secondHand = false;
+            vm.material.state = true;
         };
 
         vm.clearSelectedItem = function () {

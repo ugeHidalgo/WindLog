@@ -13,7 +13,37 @@ namespace WindLog.Models
         public WindlogRepository(WindlogContext context)
         {
             _context = context;
-        }       
+        }
+
+        #region Material Types
+        public IEnumerable<MaterialType> GetAllMaterialTypes(string userName)
+        {
+            return _context.MaterialTypes
+                .Where(x => x.UserName == userName);
+        }
+
+        public void AddMaterialType(MaterialType matType)
+        {
+            matType.Created = DateTime.Now;
+            _context.Add(matType);
+        }
+
+        public void UpdateMaterialType(MaterialType matType)
+        {
+            _context.Update(matType);
+        }
+
+        public bool RemoveMaterialType(int id, string username)
+        {
+            var materialTypeToRemove = _context.MaterialTypes.FirstOrDefault(x => x.Id == id && x.UserName == username);
+            if (materialTypeToRemove == null) return false;
+            _context.MaterialTypes.Remove(materialTypeToRemove);
+            return true;
+        }
+
+        #endregion
+
+        #region Materials
 
         public IEnumerable<Material> GetAllMaterials(string userName)
         {
@@ -29,11 +59,23 @@ namespace WindLog.Models
                 .FirstOrDefault(x => x.UserName == userName && x.Id == id);
         }
 
-        public IEnumerable<MaterialType> GetAllMaterialTypes(string userName)
+        public void AddMaterial(Material material)
         {
-            return _context.MaterialTypes
-                .Where(x=>x.UserName == userName);
+            var materialType = _context.MaterialTypes.FirstOrDefault(x => x.Id == material.MaterialType.Id);
+            material.Created = DateTime.Now;
+            material.MaterialType = materialType;
+
+            _context.Add(material);
         }
+
+        public void UpdateMaterial(Material material)
+        {
+            _context.Update(material);
+        }
+
+        #endregion        
+
+        #region Sessions
 
         public IEnumerable<Session> GetAllSessions(string userName)
         {
@@ -51,34 +93,25 @@ namespace WindLog.Models
             return data;
         }
 
+        #endregion
+
+        #region Spots
+
         public IEnumerable<Spot> GetAllSpots(string userName)
         {
             return _context.Spots
                 .Where(x => x.UserName == userName);
         }
 
-        public void AddMaterialType(MaterialType matType)
-        {
-            matType.Created = DateTime.Now;
-            _context.Add(matType);
-        }
+        #endregion
 
-        public void UpdateMaterialType(MaterialType matType)
-        {           
-            _context.Update(matType);
-        }
-
-        public bool RemoveMaterialType(int id, string username)
-        {            
-            var materialTypeToRemove = _context.MaterialTypes.FirstOrDefault(x => x.Id == id && x.UserName == username);
-            if (materialTypeToRemove == null) return false;
-            _context.MaterialTypes.Remove(materialTypeToRemove);
-            return true;
-        }
+        #region Common
 
         public async Task<bool> SaveChangesAsync()
         {
             return (await _context.SaveChangesAsync()) > 0;
         }
+
+        #endregion
     }
 }

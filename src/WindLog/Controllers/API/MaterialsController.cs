@@ -4,13 +4,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using WindLog.Models;
 using WindLog.ViewModels;
 
 namespace WindLog.Controllers.API
 {
     [Authorize]
-    //[Route("api/materials")]
     public class MaterialsController : Controller
     {
         private ILogger<MaterialsController> _logger;
@@ -27,8 +27,18 @@ namespace WindLog.Controllers.API
         {
             try
             {
-                IEnumerable<Material> data = _repository.GetAllMaterials(User.Identity.Name);                
-                return Ok(Mapper.Map<IEnumerable<MaterialViewModel>>(data));
+                var result = new List<MaterialViewModel>();
+                //var materialViewModel = new MaterialViewModel();
+                //var materialTypeViewModel = new MaterialTypeViewModel();
+
+                IEnumerable<Material> data = _repository.GetAllMaterials(User.Identity.Name);
+                foreach (var material in data)
+                {
+                    var materialViewModel = Mapper.Map<MaterialViewModel>(material);
+                    materialViewModel.MaterialTypeViewModel = Mapper.Map<MaterialTypeViewModel>(material.MaterialType);
+                    result.Add(materialViewModel);
+                }              
+                return Ok(result);
             }
             catch (Exception ex)
             {
@@ -42,18 +52,61 @@ namespace WindLog.Controllers.API
         {
             try
             {                
-                Material data = _repository.GetMaterialById(Convert.ToInt32(id),User.Identity.Name);
-                if (data == null)
+                Material material = _repository.GetMaterialById(Convert.ToInt32(id),User.Identity.Name);
+                if (material == null)
                 {
                     return BadRequest(string.Format("Material with id {0} does not exist.", id));
-                }
-                return Ok(Mapper.Map<MaterialViewModel>(data));
+                }                
+                var materialViewModel = Mapper.Map<MaterialViewModel>(material);
+                materialViewModel.MaterialTypeViewModel = Mapper.Map<MaterialTypeViewModel>(material.MaterialType);
+
+                return Ok(materialViewModel);
             }
             catch (Exception ex)
             {
                 _logger.LogError($"Error when getting materials with id {id}: {ex}",id, ex);
                 return BadRequest(string.Format("An error occurred while getting material with id {0}.",id));
             }
+        }
+
+        [HttpPost("/api/materials")]
+        public async Task<ActionResult> Post([FromBody]MaterialViewModel newMaterialViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                Material newMaterial = Mapper.Map<Material>(newMaterialViewModel);
+                newMaterial.UserName = User.Identity.Name;
+                MaterialType newMaterialType = Mapper.Map<MaterialType>(newMaterialViewModel.MaterialTypeViewModel);
+                if (newMaterialType != null)
+                {
+                    newMaterial.MaterialType = newMaterialType;
+                    newMaterial.MaterialType.UserName = User.Identity.Name;
+                }
+                newMaterial.SessionMaterials = new List<SessionMaterials>();
+
+                try
+                {
+                    if (newMaterial.Id == 0)
+                    {
+                        _repository.AddMaterial(newMaterial);
+                    }
+                    else
+                    {
+                        _repository.UpdateMaterial(newMaterial);
+                    }
+
+                    if (await _repository.SaveChangesAsync())
+                    {
+                        return Created($"api/materials/{newMaterialViewModel.Name}", Mapper.Map<MaterialViewModel>(newMaterialViewModel));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError($"Error when saving new material: {ex}", ex);
+                    return BadRequest("Failed to save changes to database: " + ex);
+                }
+            }
+            return BadRequest("Failed to save changes to database: Not valid material.");
         }
     }
 }

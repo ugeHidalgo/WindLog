@@ -30,8 +30,7 @@
             vm.errorMessages = '';
 
             $http.post('/api/materialtypes', vm.materialTypeInForm)
-                    .then(function (response) { //Success
-                        //vm.materialTypes.push(response.data);
+                    .then(function (response) { //Success                        
                         vm.materialTypes = _getMaterialTypes($http);
                         vm.materialTypeInForm = {};
                     }, function (error) { //Failure

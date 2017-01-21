@@ -22,24 +22,18 @@
                     <label class="control-label">Model</label>
                     <input class="form-control" type="text" id="model" name="model"
                            ng-model="vm.material.model"
-                           required
-                           ng-minlength="3" />
+                           required/>
                     <span ng-show="materialForm.model.$error.required"
-                          class="text-warning">Valor obligatorio.</span>
-                    <span ng-show="materialForm.model.$error.minlength"
-                          class="text-warning">Longitud minima de 3 caracteres.</span>
+                          class="text-warning">Valor obligatorio.</span>                    
                 </div>
 
                 <div class="col-md-3">
                     <label class="control-label">Brand</label>
                     <input class="form-control" type="text" id="brand" name="brand"
                            ng-model="vm.material.brand"
-                           required
-                           ng-minlength="3" />
+                           required />
                     <span ng-show="materialForm.brand.$error.required"
-                          class="text-warning">Valor obligatorio.</span>
-                    <span ng-show="materialForm.brand.$error.minlength"
-                          class="text-warning">Longitud minima de 3 caracteres.</span>
+                          class="text-warning">Valor obligatorio.</span>                    
                 </div>
             </div>
 
@@ -47,13 +41,11 @@
                 <div class="col-md-3 col-md-offset-1">
                     <label class="control-label">Type</label>
                     <select class="form-control" id="typeName" name="typeName"
-                            ng-model="vm.material.materialType"
-                            ng-options="type.name for type in vm.materialTypes track by type.id"
-                            required></select>
-                    <span ng-show="materialForm.materialType.name.$error.required"
-                          class="text-warning">Valor obligatorio.</span>
-                    <span ng-show="materialForm.materialType.name.$error.minlength"
-                          class="text-warning">Longitud minima de 3 caracteres.</span>
+                            ng-model="vm.material.materialTypeViewModel"
+                            ng-options="type.name for type in vm.materialTypes track by type.id">
+                    </select>
+                    <span ng-show="materialForm.materialTypeViewModel.name.$error.required"
+                          class="text-warning">Valor obligatorio.</span>                    
                 </div>
 
                 <div class="col-md-1">
