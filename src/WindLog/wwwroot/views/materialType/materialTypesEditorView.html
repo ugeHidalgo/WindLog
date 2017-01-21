@@ -1,0 +1,57 @@
+﻿<div id="MaterialTypeForm" class="col-md-12">
+    <form novalidate name="materialTypeForm" ng-submit="vm.addItem()" class="form-horizontal">
+        <div id="dateAndNameGroup" class="form-group">
+            <label class="col-md-1 control-label">Created</label>
+            <div class="col-md-2 date">
+                <div class="input-group input-append date" id="datePicker">
+                    <input class="form-control" type="date" id="dateCreated" name="dateCreated"
+                           required
+                           ng-model="vm.materialType.dateCreated" />
+                    <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                </div>
+            </div>
+
+            <label class="col-md-2 control-label">Name</label>
+            <div class="col-md-5">
+                <input class="form-control" type="text" id="name" name="name"
+                       ng-model="vm.materialType.name"
+                       required
+                       ng-minlength="3" />
+                <span ng-show="materialTypeForm.name.$error.required" class="text-warning">Valor obligatorio.</span>
+                <span ng-show="materialTypeForm.name.$error.minlength" class="text-warning">Longitud minima de 5 caracteres.</span>
+            </div>
+        </div>
+
+        <div id="memoGroup" class="form-group">
+            <label class="col-md-1 control-label">Observ.</label>
+            <div class="col-md-9">
+                <textarea class="form-control" cols="80" rows="4" id="name" name="name"
+                          ng-model="vm.materialType.memo"></textarea>
+            </div>
+        </div>
+
+        <div id="formButtons" class="form-group">
+            <a class="btn btn-sm btn-default col-md-offset-1"
+               href="/App/MaterialTypes">
+                <i class="fa fa-list"></i>
+                Back to material types
+            </a>
+            <a class="btn btn-sm btn-default col-md-offset-1"
+               ng-click="vm.newItem()">
+                <i class="fa fa-edit"></i>
+                New
+            </a>
+            <a class="btn btn-sm btn-default"
+               ng-click="vm.clearSelectedItem()">
+                <i class="fa fa-eraser"></i>
+                Clear
+            </a>
+            <a class="btn btn-danger btn-sm"
+               ng-click="vm.addItem()"
+               ng-disabled="materialTypeForm.$invalid">
+                <i class="fa fa-save"></i>
+                Save
+            </a>
+        </div>
+    </form>
+</div>

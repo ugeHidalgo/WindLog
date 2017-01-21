@@ -4,7 +4,7 @@
         <wait-cursor display-when="vm.isBusy"></wait-cursor>
         <form novalidate name="materialForm" ng-submit="vm.addItem()" class="form-horizontal">
 
-            <div id="materialNames" class="form-group">
+            <div id="materialNamesGroup" class="form-group">
 
                 <div class="col-md-3 col-md-offset-1">
                     <label class="control-label">Name</label>
@@ -37,7 +37,7 @@
                 </div>
             </div>
 
-            <div id="materialTypeAndYear" class="form-group">
+            <div id="materialTypeAndYearGroup" class="form-group">
                 <div class="col-md-3 col-md-offset-1">
                     <label class="control-label">Type</label>
                     <select class="form-control" id="typeName" name="typeName"
@@ -54,7 +54,7 @@
                 </div>
             </div>
 
-            <div id="statesAndDates" class="form-group">
+            <div id="statesAndDatesGroup" class="form-group">
                 <div class="col-md-2 col-md-offset-1 date">
                     <label class="control-label">Created</label>
                     <div class="input-group input-append date" id="datePicker">
@@ -95,7 +95,7 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            <div id="memoGroup" class="form-group">
                 <div class="col-md-10 col-md-offset-1">
                     <label class="control-label">Observ.</label>
                     <textarea class="form-control" cols="80" rows="4" id="memo" name="memo"
@@ -109,7 +109,7 @@
                     <i class="fa fa-list"></i>
                     Back to materials
                 </a>
-                <a class="btn btn-sm btn-default"
+                <a class="btn btn-sm btn-default col-md-offset-1"
                    ng-click="vm.newItem()">
                     <i class="fa fa-edit"></i>
                     New

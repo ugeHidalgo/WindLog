@@ -16,10 +16,16 @@ namespace WindLog.Models
         }
 
         #region Material Types
+
         public IEnumerable<MaterialType> GetAllMaterialTypes(string userName)
         {
             return _context.MaterialTypes
                 .Where(x => x.UserName == userName);
+        }
+        public MaterialType GetMaterialTypeById(int id, string userName)
+        {
+            return _context.MaterialTypes                
+                .FirstOrDefault(x => x.UserName == userName && x.Id == id);
         }
 
         public void AddMaterialType(MaterialType matType)

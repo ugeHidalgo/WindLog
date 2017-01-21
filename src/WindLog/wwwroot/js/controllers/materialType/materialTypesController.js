@@ -39,37 +39,7 @@
                     .finally(function () {
                         vm.isBusy = false;
                     });
-        };
-
-        vm.selectItem = function (row) {
-            var year, month, day;
-
-            vm.materialTypeInForm = _copyRow(row);
-            vm.materialTypeInForm.dateCreated = parseDate(vm.materialTypeInForm.dateCreated);            
-        };
-
-        vm.newItem = function () {
-            vm.materialTypeInForm = {};
-            vm.materialTypeInForm.id = 0;
-            vm.materialTypeInForm.dateCreated = new Date();
-        };
-
-        vm.clearSelectedItem = function () {
-            vm.materialTypeInForm = {};
-        };
-
-        vm.removeItem = function (row) {
-            vm.isBusy = true;
-            $http.delete('/api/materialtypes/' + row.id)
-                .then(function (response) { //success                    
-                    vm.materialTypes = _removeItemFromArray(vm.materialTypes, row.id);
-                }, function () { //Failure
-                    vm.errorMessage = 'Failed to delete material type with id ' + row.id + ':' + error;
-                })
-                .finally(function () {
-                    vm.isBusy = false;
-                });
-        };
+        };       
     }
 })();
 
@@ -87,22 +57,4 @@ _getMaterialTypes = function (http) {
     .finally(function () {        
     });
     return materialTypes;
-}
-
-_copyRow = function (row) {
-    var newRow = {};
-    for (var propertyName in row) {
-        newRow[propertyName] = row[propertyName];
-    }
-    return newRow;
-}
-
-_removeItemFromArray = function (items, itemId) {
-    var newItems = [];
-    items.forEach(function (item) {
-        if (item.id !== itemId) {
-            newItems.push(item);
-        }
-    });
-    return newItems;
 }

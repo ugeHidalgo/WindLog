@@ -4,20 +4,21 @@ using System.Threading.Tasks;
 namespace WindLog.Models
 {
     public interface IWindlogRepository
-    {
-        IEnumerable<MaterialType> GetAllMaterialTypes(string userName);
+    {        
         IEnumerable<Material> GetAllMaterials(string userName);
-        IEnumerable<Spot> GetAllSpots(string userName);
-        IEnumerable<Session> GetAllSessions(string userName);
+        Material GetMaterialById(int id, string userName);
+        void AddMaterial(Material material);
+        void UpdateMaterial(Material material);
 
+        IEnumerable<MaterialType> GetAllMaterialTypes(string userName);
+        MaterialType GetMaterialTypeById(int id, string userName);
         void AddMaterialType(MaterialType matType);
         void UpdateMaterialType(MaterialType matType);
         bool RemoveMaterialType(int id, string username);
 
-        void AddMaterial(Material material);
-        void UpdateMaterial(Material material);
+        IEnumerable<Spot> GetAllSpots(string userName);
+        IEnumerable<Session> GetAllSessions(string userName);
 
-        Task<bool> SaveChangesAsync();
-        Material GetMaterialById(int id, string userName);
+        Task<bool> SaveChangesAsync();                
     }
 }

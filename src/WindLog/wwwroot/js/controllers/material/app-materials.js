@@ -1,7 +1,13 @@
 ﻿(function () {
-    angular.module('app-materials', ['simpleControls', 'ngRoute', 'smart-table'])
-        .config(['$locationProvider', '$routeProvider',
+    angular.
+        module('app-materials', [
+            'simpleControls',
+            'ngRoute',
+            'smart-table'
+        ]).
+        config(['$locationProvider', '$routeProvider',
             function ($locationProvider, $routeProvider) {
+
                 $locationProvider.hashPrefix('!');
                 $locationProvider.html5Mode(true);
                 $routeProvider.
@@ -21,5 +27,5 @@
                     redirectTo: '/'
                 });
             }
-      ])
+        ])
 })();

@@ -37,6 +37,27 @@ namespace WindLog.Controllers.API
             }
         }
 
+        [HttpGet("/api/materialtypes/{id}")]
+        public ActionResult Get(string id)
+        {
+            try
+            {
+                MaterialType materialType = _repository.GetMaterialTypeById(Convert.ToInt32(id), User.Identity.Name);
+                if (materialType == null)
+                {
+                    return BadRequest(string.Format("Material type with id {0} does not exist.", id));
+                }
+                var materialTypeViewModel = Mapper.Map<MaterialTypeViewModel>(materialType);                
+
+                return Ok(materialTypeViewModel);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error when getting material type with id {id}: {ex}", id, ex);
+                return BadRequest(string.Format("An error occurred while getting material type with id {0}.", id));
+            }
+        }
+
         [HttpPost("/api/materialtypes")]
         public async Task<ActionResult> Post([FromBody]MaterialTypeViewModel newMatTypeViewModel)
         {
