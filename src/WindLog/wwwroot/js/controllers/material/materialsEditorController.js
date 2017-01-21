@@ -12,9 +12,16 @@
         vm.errorMessage = '';
         vm.isBusy = true;        
 
-        vm.materialTypes = _getMaterialTypes($http, vm, function () {
-            vm.material = _getMaterial($http, vm);
-        });
+        if (vm.id === '0')
+        {
+            _prepareForNewItem(vm);
+            vm.materialTypes = _getMaterialTypes($http, vm );
+        }
+        else {
+            vm.materialTypes = _getMaterialTypes($http, vm, function () {
+                vm.material = _getMaterial($http, vm);
+            });
+        }        
 
         vm.addItem = function () {
             vm.isBusy = true;
@@ -39,7 +46,7 @@
             vm.material.datePurchased = new Date();
             vm.material.secondHand = false;
             vm.material.state = true;
-        };
+        }
 
         vm.clearSelectedItem = function () {
             vm.material = {};
@@ -84,4 +91,14 @@ _getMaterial = function (http, vm ) {
         });
 
     return material;
+}
+
+_prepareForNewItem = function (vm) {
+    vm.material = {};
+    vm.id = 0;
+    vm.material.id = 0;
+    vm.material.dateCreated = new Date();
+    vm.material.datePurchased = new Date();
+    vm.material.secondHand = false;
+    vm.material.state = true;
 }
