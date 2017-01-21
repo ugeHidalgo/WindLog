@@ -13,7 +13,16 @@
                 <th>Observ.</th>
             </tr>
             <tr>
-                <th colspan="5"><input st-search="" class="form-control" placeholder="type here to search ..." type="text" /></th>
+                <th colspan="1">
+                    <a type="button"
+                       class="btn-sm btn-primary"
+                       href="editor/0">
+                        <i class="glyphicon glyphicon-plus" title="Add new material type"></i>
+                    </a>
+                </th>
+                <th colspan="4">
+                    <input st-search="" class="form-control" placeholder="type here to search ..." type="text" />
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -25,12 +34,7 @@
                                class="btn-sm btn-info"
                                href="editor/{{row.id}}">
                                 <i class="glyphicon glyphicon-edit" title="Select"></i>
-                            </a>                            
-                            <button type="button"
-                                    class="btn-danger"
-                                    ng-click="vm.removeItem(row)">
-                                <i class="glyphicon glyphicon-remove" title="Remove"></i>
-                            </button>
+                            </a>                                                        
                         </div>
                     </div>
                 </td>
