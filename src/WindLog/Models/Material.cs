@@ -15,7 +15,7 @@ namespace WindLog.Models
         public DateTime Created { get; set; }
         public string Memo { get; set; }
         public bool SecondHand { get; set; }
-        public int State { get; set; } = 1; //1 Active. 0 Not used.
+        public bool State { get; set; } = true;
 
         #region relations
         public MaterialType MaterialType { get; set; }

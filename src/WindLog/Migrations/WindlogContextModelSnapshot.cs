@@ -144,7 +144,7 @@ namespace WindLog.Migrations
 
                     b.Property<bool>("SecondHand");
 
-                    b.Property<int>("State");
+                    b.Property<bool>("State");
 
                     b.Property<string>("UserName");
 

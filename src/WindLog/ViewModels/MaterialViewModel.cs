@@ -32,7 +32,7 @@ namespace WindLog.ViewModels
         public bool SecondHand { get; set; }
 
         [Required]
-        public int State { get; set; } = 1; //1 Active. 0 Not used.
+        public bool State { get; set; }
 
         public MaterialType MaterialType { get; set; }
     }
