@@ -67,6 +67,7 @@
                 .then(function (response) { //success                                        
                 }, function () { //Failure
                     vm.errorMessage = 'Failed to delete material type with id ' + row.id + ':' + error;
+                    Notification.error('Failed to delete selected material type !');
                 })
                 .finally(function () {
                     vm.isBusy = false;

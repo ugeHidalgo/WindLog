@@ -5,7 +5,7 @@
         .module('app-materialTypes')
         .controller('materialTypesController', materialTypesController);
 
-    function materialTypesController($http) {
+    function materialTypesController($http, Notification) {
         var vm = this;
         vm.materialTypes = [];
         vm.materialTypeInForm = {};
@@ -20,26 +20,11 @@
             }, function (error) {
                 //Failure
                 vm.errorMessage = 'Failed to load material types: ' + error;
+                Notification.error('Failed to load material types !');
             })
             .finally(function () {
                 vm.isBusy = false;
-            });        
-
-        vm.addItem = function () {
-            vm.isBusy = true;
-            vm.errorMessages = '';
-
-            $http.post('/api/materialtypes', vm.materialTypeInForm)
-                    .then(function (response) { //Success                        
-                        vm.materialTypes = _getMaterialTypes($http);
-                        vm.materialTypeInForm = {};
-                    }, function (error) { //Failure
-                        vm.errorMessage = 'Failed to save new material type :' + error;
-                    })
-                    .finally(function () {
-                        vm.isBusy = false;
-                    });
-        };       
+            });                    
     }
 })();
 
