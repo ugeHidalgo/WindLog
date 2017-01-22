@@ -14,6 +14,8 @@ namespace WindLog.ViewModels
         [Required]
         public DateTime DateCreated { get; set; }
 
+        public bool Active { get; set; }
+
         public string Memo { get; set; }
     }
 }

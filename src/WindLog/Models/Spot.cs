@@ -13,7 +13,8 @@ namespace WindLog.Models
         public string Country { get; set; }
         public double Lat { get; set; }
         public double Long { get; set; }
-        public DateTime Created { get; set; }        
+        public DateTime Created { get; set; }
+        public bool Active { get; set; } = true;
         public string Memo { get; set; }
     }
 }

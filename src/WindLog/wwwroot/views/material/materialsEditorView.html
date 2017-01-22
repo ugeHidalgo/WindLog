@@ -5,7 +5,6 @@
         <form novalidate name="materialForm" ng-submit="vm.addItem()" class="form-horizontal">
 
             <div id="materialNamesGroup" class="form-group">
-
                 <div class="col-md-3 col-md-offset-1">
                     <label class="control-label">Name</label>
                     <input class="form-control" type="text" id="name" name="name"
@@ -88,9 +87,9 @@
 
                 <div class="col-md-1">
                     <label class="control-label">Active</label>
-                    <input class="form-control" type="checkbox" id="state" name="state"
-                           ng-model="vm.material.state" />
-                    <span ng-show="materialForm.state.$error.required"
+                    <input class="form-control" type="checkbox" id="active" name="active"
+                           ng-model="vm.material.active" />
+                    <span ng-show="materialForm.active.$error.required"
                           class="text-warning">Valor obligatorio.</span>
                 </div>
             </div>

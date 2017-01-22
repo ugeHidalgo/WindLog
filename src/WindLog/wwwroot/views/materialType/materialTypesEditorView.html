@@ -1,31 +1,45 @@
 ﻿<div id="MaterialTypeForm" class="col-md-12">
     <form novalidate name="materialTypeForm" ng-submit="vm.addItem()" class="form-horizontal">
         <div id="dateAndNameGroup" class="form-group">
-            <label class="col-md-1 control-label">Created</label>
-            <div class="col-md-2 date">
-                <div class="input-group input-append date" id="datePicker">
-                    <input class="form-control" type="date" id="dateCreated" name="dateCreated"
-                           required
-                           ng-model="vm.materialType.dateCreated" />
-                    <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
-                </div>
-            </div>
-
-            <label class="col-md-2 control-label">Name</label>
-            <div class="col-md-5">
+            <div class="col-md-3 col-md-offset-1">
+                <label class="control-label">Name</label>
                 <input class="form-control" type="text" id="name" name="name"
                        ng-model="vm.materialType.name"
                        required
                        ng-minlength="3" />
-                <span ng-show="materialTypeForm.name.$error.required" class="text-warning">Valor obligatorio.</span>
-                <span ng-show="materialTypeForm.name.$error.minlength" class="text-warning">Longitud minima de 5 caracteres.</span>
+                <span ng-show="materialTypeForm.name.$error.required"
+                      class="text-warning">Valor obligatorio.</span>
+                <span ng-show="materialTypeForm.name.$error.minlength"
+                      class="text-warning">Longitud minima de 3 caracteres.</span>
+            </div>
+        </div>
+
+        <div id="statesAndDatesGroup" class="form-group">
+            <div class="col-md-2 col-md-offset-1 date">
+                <label class="control-label">Created</label>
+                <div class="input-group input-append date" id="datePicker">
+                    <input class="form-control" type="date" id="dateCreated" name="dateCreated"
+                           required
+                           ng-model="vm.materialType.dateCreated" />
+                    <span class="input-group-addon add-on">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>            
+
+            <div class="col-md-1 col-md-offset-1">
+                <label class="control-label">Active</label>
+                <input class="form-control" type="checkbox" id="active" name="active"
+                       ng-model="vm.materialType.active" />
+                <span ng-show="materialTypeForm.active.$error.required"
+                      class="text-warning">Valor obligatorio.</span>
             </div>
         </div>
 
         <div id="memoGroup" class="form-group">
-            <label class="col-md-1 control-label">Observ.</label>
-            <div class="col-md-9">
-                <textarea class="form-control" cols="80" rows="4" id="name" name="name"
+            <div class="col-md-10 col-md-offset-1">
+                <label class="control-label">Observ.</label>
+                <textarea class="form-control" cols="80" rows="4" id="memo" name="memo"
                           ng-model="vm.materialType.memo"></textarea>
             </div>
         </div>

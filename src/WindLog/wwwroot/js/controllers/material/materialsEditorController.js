@@ -4,7 +4,7 @@
     angular.module('app-materials')
     .controller('MaterialsEditorController', materialsEditorController);
 
-    function materialsEditorController($routeParams,$http) {
+    function materialsEditorController($routeParams, $http, Notification) {
         var vm = this, url,
             year, month, day;
 
@@ -31,10 +31,12 @@
                     .then(function (response) { //Success                                            
                         vm.material = {};
                     }, function (error) { //Failure
-                        vm.errorMessage = 'Failed to save new material :' + error;
+                        vm.errorMessage = 'Failed to save material :' + error;
+                        Notification.error('Failed to save material !');
                     })
                     .finally(function () {
                         vm.isBusy = false;
+                        Notification.success('Material successfully saved !');
                     });
         };
 
@@ -65,6 +67,7 @@ _getMaterialTypes = function (http, vm, callbackFn) {
         }, function (error) {
             //Failure
             vm.errorMessages = 'Failed to load material types: ' + error;
+            Notification.error('Failed to load material types !');
         })
         .finally(function () {            
     });
@@ -84,7 +87,8 @@ _getMaterial = function (http, vm ) {
                 material.dateCreated = parseDate(material.dateCreated);
         }, function (error) {
                 //Failure
-                vm.errorMessage = 'Failed to load material with id ' + vm.id + ' : ' + error;
+            vm.errorMessage = 'Failed to load material with id ' + vm.id + ' : ' + error;
+            Notification.error('Failed to load material type with id : '+ vm.id +'!');
         })
         .finally(function () {
                 vm.isBusy = false;

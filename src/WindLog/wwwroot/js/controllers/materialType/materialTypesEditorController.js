@@ -13,10 +13,8 @@
         vm.isBusy = true;
         vm.materialType = {};
 
-        if (vm.id=='0') {
-            vm.materialType = {};
-            vm.materialType.id = 0;
-            vm.materialType.dateCreated = new Date();
+        if (vm.id == '0') {
+            vm.materialType = _newMaterialType();            
         }
         else {
             $http.get('/api/materialtypes/' + vm.id)
@@ -43,8 +41,8 @@
                         vm.materialType = {};
                         Notification.success('Material type successfully saved !');
                     }, function (error) { //Failure
-                        vm.errorMessage = 'Failed to save new material type :' + error;
-                        Notification.error('Failed to save new material type !');
+                        vm.errorMessage = 'Failed to save material type :' + error;
+                        Notification.error('Failed to save material type !');
                     })
                     .finally(function () {
                         vm.isBusy = false;
@@ -52,9 +50,7 @@
         };
 
         vm.newItem = function () {
-            vm.materialType = {};
-            vm.materialType.id = 0;
-            vm.materialType.dateCreated = new Date();
+            vm.materialType = _newMaterialType();            
         };
 
         vm.clearSelectedItem = function () {
@@ -75,3 +71,14 @@
         };
     }
 })();
+
+_newMaterialType = function () {
+    var newMaterialType = {};
+
+    newMaterialType = {};
+    newMaterialType.id = 0;
+    newMaterialType.active = true;
+    newMaterialType.dateCreated = new Date();
+
+    return newMaterialType
+}

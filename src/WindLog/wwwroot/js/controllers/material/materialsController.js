@@ -5,7 +5,7 @@
         .module('app-materials')
         .controller('MaterialsController', materialsController);
 
-    function materialsController($http) {
+    function materialsController($http, Notification) {
         var vm = this;
 
         vm.materials = [];
@@ -20,6 +20,7 @@
             }, function (error) {
                 //Failure
                 vm.errorMessage = 'Failed to load materials: ' + error;
+                Notification.error('Failed to load material !');
             })
             .finally(function () {
                 vm.isBusy = false;

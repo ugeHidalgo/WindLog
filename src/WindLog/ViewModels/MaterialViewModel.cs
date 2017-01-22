@@ -32,7 +32,7 @@ namespace WindLog.ViewModels
 
         public bool SecondHand { get; set; }
 
-        public bool State { get; set; }
+        public bool Active { get; set; }
 
         public MaterialTypeViewModel MaterialTypeViewModel { get; set; }
     }
