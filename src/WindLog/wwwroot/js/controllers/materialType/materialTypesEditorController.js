@@ -4,7 +4,7 @@
     angular.module('app-materialTypes')
     .controller('MaterialTypesEditorController', materialTypesEditorController);
 
-    function materialTypesEditorController($routeParams, $http) {
+    function materialTypesEditorController($routeParams, $http, Notification) {
         var vm = this, url,
             year, month, day;
 
@@ -27,6 +27,7 @@
             }, function (error) {
                 //Failure
                 vm.errorMessage = 'Failed to load material type (' + vm.id + '): ' + error;
+                Notification.error('Failed to load selected material type !');
             })
             .finally(function () {
                 vm.isBusy = false;
@@ -40,8 +41,10 @@
             $http.post('/api/materialtypes', vm.materialType)
                     .then(function (response) { //Success                                                
                         vm.materialType = {};
+                        Notification.success('Material type successfully saved !');
                     }, function (error) { //Failure
                         vm.errorMessage = 'Failed to save new material type :' + error;
+                        Notification.error('Failed to save new material type !');
                     })
                     .finally(function () {
                         vm.isBusy = false;

@@ -4,10 +4,11 @@
             'simpleControls', //Busy indicator
             'ngRoute',
             'smart-table', //Grids
-            'lrDragNDrop'  //Drag and drop columns on grids.
+            'lrDragNDrop',  //Drag and drop columns on grids.
+            'ui-notification'
         ]).
-        config(['$locationProvider', '$routeProvider',
-            function ($locationProvider, $routeProvider) {
+        config(['$locationProvider', '$routeProvider', 'NotificationProvider',
+            function ($locationProvider, $routeProvider, NotificationProvider) {
 
                 $locationProvider.hashPrefix('!');
                 $locationProvider.html5Mode(true);
@@ -27,6 +28,16 @@
                     otherwise({
                         redirectTo: '/'
                     });
+
+                NotificationProvider.setOptions({
+                    delay: 3000,
+                    startTop: 20,
+                    startRight: 10,
+                    verticalSpacing: 20,
+                    horizontalSpacing: 20,
+                    positionX: 'center',
+                    positionY: 'top'
+                });
             }
         ]);
 })();
