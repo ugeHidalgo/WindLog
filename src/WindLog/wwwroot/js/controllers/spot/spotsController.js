@@ -5,7 +5,7 @@
         .module('app-spots')
         .controller('spotsController', spotsController);
 
-    function spotsController($http) {
+    function spotsController($http, Notification) {
         var vm = this;
         vm.spots = [];
         vm.errorMessages = '';
@@ -19,6 +19,7 @@
             }, function (error) {
                 //Failure
                 vm.errorMessages = 'Failed to load spots: ' + error;
+                Notification.error('Failed to load spots !');
             })
             .finally(function () {
                 vm.isBusy = false;

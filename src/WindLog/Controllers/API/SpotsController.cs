@@ -10,7 +10,6 @@ using WindLog.ViewModels;
 namespace WindLog.Controllers.API
 {
     [Authorize]
-    [Route("api/spots")]
     public class SpotsController : Controller
     {
         private ILogger<SpotsController> _logger;
@@ -22,7 +21,7 @@ namespace WindLog.Controllers.API
             _logger = logger;
         }
 
-        [HttpGet("")]
+        [HttpGet("api/spots")]
         public ActionResult Get()
         {
             try
@@ -34,6 +33,27 @@ namespace WindLog.Controllers.API
             {
                 _logger.LogError($"Error when getting all spots: {ex}", ex);
                 return BadRequest("An error occurred while getting spots.");
+            }
+        }
+
+        [HttpGet("/api/spots/{id}")]
+        public ActionResult Get(string id)
+        {
+            try
+            {
+                Spot spot = _repository.GetSpotById(Convert.ToInt32(id), User.Identity.Name);
+                if (spot == null)
+                {
+                    return BadRequest(string.Format("Spot with id {0} does not exist.", id));
+                }
+                var spotViewModel = Mapper.Map<SpotViewModel>(spot);
+
+                return Ok(spotViewModel);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error when getting spot with id {id}: {ex}", id, ex);
+                return BadRequest(string.Format("An error occurred while getting spot with id {0}.", id));
             }
         }
     }

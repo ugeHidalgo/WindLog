@@ -109,6 +109,12 @@ namespace WindLog.Models
                 .Where(x => x.UserName == userName);
         }
 
+        public Spot GetSpotById(int id, string userName)
+        {
+            return _context.Spots
+                .FirstOrDefault(x => x.UserName == userName && x.Id == id);
+        }
+
         #endregion
 
         #region Common

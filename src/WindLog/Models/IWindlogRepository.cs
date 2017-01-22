@@ -17,6 +17,8 @@ namespace WindLog.Models
         bool RemoveMaterialType(int id, string username);
 
         IEnumerable<Spot> GetAllSpots(string userName);
+        Spot GetSpotById(int id, string userName);
+
         IEnumerable<Session> GetAllSessions(string userName);
 
         Task<bool> SaveChangesAsync();                
