@@ -25,28 +25,13 @@
                                     class="btn-info"
                                     ng-click="vm.selectItem(row)">
                                 <i class="glyphicon glyphicon-edit" title="Select"></i>
-                            </button>
-                            <button type="button"
-                                    class="btn-danger"
-                                    ng-click="vm.removeItem(row)">
-                                <i class="glyphicon glyphicon-remove" title="Remove"></i>
-                            </button>
+                            </button>                            
                         </div>
                     </div>
                 </td>
                 <td class="col-md-2">{{ spot.name }}</td>
                 <td class="col-md-2">{{ spot.city }}</td>
-                <td class="col-md-2">{{ spot.province }}</td>
-                <!--<td class="col-xs-1">
-                    <a href="#" class="btn btn-xs btn-info">
-                        <i class="glyphicon glyphicon-edit" title="Edit"></i>
-                    </a>
-                </td>
-                <td class="col-xs-1">
-                    <button type="button" ng-click="removeRow(row)" class="btn btn-xs btn-danger">
-                        <i class="glyphicon glyphicon-remove" title="Remove"></i>
-                    </button>
-                </td>-->
+                <td class="col-md-2">{{ spot.province }}</td>                
             </tr>
         </tbody>
         <tfoot>
