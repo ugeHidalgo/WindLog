@@ -27,19 +27,3 @@
             });                    
     }
 })();
-
-//_getMaterialTypes = function (http) {
-//    var materialTypes = [];
-
-//    http.get('/api/materialtypes')
-//    .then(function (response) {
-//        //Success
-//        angular.copy(response.data, materialTypes);
-//    }, function (error) {
-//        //Failure
-//        vm.errorMessages = 'Failed to load material types: ' + error;
-//    })
-//    .finally(function () {        
-//    });
-//    return materialTypes;
-//}

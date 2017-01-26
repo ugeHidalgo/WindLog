@@ -4,7 +4,9 @@ using System.ComponentModel.DataAnnotations;
 namespace WindLog.ViewModels
 {
     public class SpotViewModel
-    {        
+    {
+        public int Id { get; set; }
+
         public string UserName { get; set; }
 
         [Required]
@@ -25,6 +27,8 @@ namespace WindLog.ViewModels
         public double Long { get; set; }
 
         public DateTime DateCreated { get; set; } = DateTime.UtcNow;
+
+        public bool Active { get; set; }
 
         public string Memo { get; set; }
     }

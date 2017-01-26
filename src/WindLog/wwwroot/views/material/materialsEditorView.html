@@ -1,11 +1,11 @@
-﻿<div>
+﻿
     <div id="MaterialForm" class="col-md-12">
         <div class="text-danger" ng-show="vm.errorMessage">{{vm.errorMessage}}</div>
         <wait-cursor display-when="vm.isBusy"></wait-cursor>
         <form novalidate name="materialForm" ng-submit="vm.addItem()" class="form-horizontal">
 
             <div id="materialNamesGroup" class="form-group">
-                <div class="col-md-3 col-md-offset-1">
+                <div class="col-md-4 ">
                     <label class="control-label">Name</label>
                     <input class="form-control" type="text" id="name" name="name"
                            ng-model="vm.material.name"
@@ -17,7 +17,7 @@
                           class="text-warning">Longitud minima de 3 caracteres.</span>
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <label class="control-label">Model</label>
                     <input class="form-control" type="text" id="model" name="model"
                            ng-model="vm.material.model"
@@ -26,7 +26,7 @@
                           class="text-warning">Valor obligatorio.</span>
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <label class="control-label">Brand</label>
                     <input class="form-control" type="text" id="brand" name="brand"
                            ng-model="vm.material.brand"
@@ -37,7 +37,7 @@
             </div>
 
             <div id="materialTypeAndYearGroup" class="form-group">
-                <div class="col-md-3 col-md-offset-1">
+                <div class="col-md-4">
                     <label class="control-label">Type</label>
                     <select class="form-control" id="typeName" name="typeName"
                             ng-model="vm.material.materialTypeViewModel"
@@ -54,7 +54,7 @@
             </div>
 
             <div id="statesAndDatesGroup" class="form-group">
-                <div class="col-md-2 col-md-offset-1 date">
+                <div class="col-md-3 date">
                     <label class="control-label">Created</label>
                     <div class="input-group input-append date" id="datePicker">
                         <input class="form-control" type="date" id="dateCreated" name="dateCreated"
@@ -66,7 +66,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-2 date col-md-offset-1">
+                <div class="col-md-3 date col-md-offset-1">
                     <label class="control-label">Purchased</label>
                     <div class="input-group input-append date" id="datePicker">
                         <input class="form-control"
@@ -127,4 +127,3 @@
             </div>
         </form>
     </div>
-</div>

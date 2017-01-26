@@ -1,7 +1,7 @@
-﻿<div id="MaterialTypeForm" class="col-md-12">
+﻿<div id="MaterialTypeForm">
     <form novalidate name="materialTypeForm" ng-submit="vm.addItem()" class="form-horizontal">
         <div id="dateAndNameGroup" class="form-group">
-            <div class="col-md-3 col-md-offset-1">
+            <div class="col-md-4 col-md-offset-1">
                 <label class="control-label">Name</label>
                 <input class="form-control" type="text" id="name" name="name"
                        ng-model="vm.materialType.name"
@@ -12,10 +12,8 @@
                 <span ng-show="materialTypeForm.name.$error.minlength"
                       class="text-warning">Longitud minima de 3 caracteres.</span>
             </div>
-        </div>
 
-        <div id="statesAndDatesGroup" class="form-group">
-            <div class="col-md-2 col-md-offset-1 date">
+            <div class="col-md-3 col-md-offset-1 date">
                 <label class="control-label">Created</label>
                 <div class="input-group input-append date" id="datePicker">
                     <input class="form-control" type="date" id="dateCreated" name="dateCreated"

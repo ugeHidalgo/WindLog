@@ -1,0 +1,109 @@
+﻿<div id="SpotForm" >
+    <form novalidate name="spotForm" ng-submit="vm.addItem()" class="form-horizontal">
+
+        <div id="mainSpotData" class="col-md-10">
+            <div id="nameGroup" class="form-group">
+                <div class="col-md-9">
+                    <label class="control-label">Name</label>
+                    <input class="form-control" type="text" id="name" name="name"
+                           ng-model="vm.spot.name"
+                           required
+                           ng-minlength="3" />
+                    <span ng-show="spotForm.name.$error.required"
+                          class="text-warning">Valor obligatorio.</span>
+                    <span ng-show="spotForm.name.$error.minlength"
+                          class="text-warning">Longitud minima de 3 caracteres.</span>
+                </div>
+            </div>
+
+            <div id="dateAndStateGroup" class="form-group">
+                <div class="col-md-2 date">
+                    <label class="control-label">Created</label>
+                    <div class="input-group input-append date" id="datePicker">
+                        <input class="form-control" type="date" id="dateCreated" name="dateCreated"
+                               required
+                               ng-model="vm.spot.dateCreated" />
+                        <span class="input-group-addon add-on">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-md-1 col-md-offset-2">
+                    <label class="control-label">Active</label>
+                    <input class="form-control" type="checkbox" id="active" name="active"
+                           ng-model="vm.spot.active" />
+                    <span ng-show="spotForm.active.$error.required"
+                          class="text-warning">Valor obligatorio.</span>
+                </div>
+            </div>
+
+            <div id="placeGroup" class="form-group">
+                <div class="col-md-3">
+                    <label class="control-label">City</label>
+                    <input class="form-control" type="text" id="city" name="city"
+                           ng-model="vm.spot.city"
+                           ng-maxlength="20" />                    
+                    <span ng-show="spotForm.city.$error.maxlenght"
+                          class="text-warning">Longitud máxima de 20 caracteres.</span>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="control-label">Province</label>
+                    <input class="form-control" type="text" id="province" name="province"
+                           ng-model="vm.spot.province"
+                           ng-maxlength="20" />
+                    <span ng-show="spotForm.province.$error.maxlenght"
+                          class="text-warning">Longitud máxima de 20 caracteres.</span>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="control-label">Country</label>
+                    <input class="form-control" type="text" id="country" name="country"
+                           ng-model="vm.spot.country"
+                           ng-maxlength="20" />
+                    <span ng-show="spotForm.country.$error.maxlenght"
+                          class="text-warning">Longitud máxima de 20 caracteres.</span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div id="spotPosition" class="col-md-6">
+
+        </div>
+
+        <div id="memoGroup" class="form-group">
+            <div class="col-md-10 col-md-offset-1">
+                <label class="control-label">Observ.</label>
+                <textarea class="form-control" cols="80" rows="4" id="memo" name="memo"
+                          ng-model="vm.spot.memo"></textarea>
+            </div>
+        </div>
+
+        <div id="formButtons" class="form-group">
+            <a class="btn btn-sm btn-default col-md-offset-1"
+               href="/App/Spots">
+                <i class="fa fa-list"></i>
+                Back to spots
+            </a>
+            <a class="btn btn-sm btn-default col-md-offset-1"
+               ng-click="vm.newItem()">
+                <i class="fa fa-edit"></i>
+                New
+            </a>
+            <a class="btn btn-sm btn-default"
+               ng-click="vm.clearSelectedItem()">
+                <i class="fa fa-eraser"></i>
+                Clear
+            </a>
+            <a class="btn btn-danger btn-sm"
+               ng-click="vm.addItem()"
+               ng-disabled="spotForm.$invalid">
+                <i class="fa fa-save"></i>
+                Save
+            </a>
+        </div>
+    </form>
+</div>

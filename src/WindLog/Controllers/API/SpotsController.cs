@@ -56,5 +56,30 @@ namespace WindLog.Controllers.API
                 return BadRequest(string.Format("An error occurred while getting spot with id {0}.", id));
             }
         }
+
+        [HttpPost("/api/spots")]
+        public async Task<ActionResult> Post([FromBody]SpotViewModel newSpotViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                Spot newSpot = Mapper.Map<Spot>(newSpotViewModel);
+                newSpot.UserName = User.Identity.Name;
+
+                if (newSpot.Id == 0)
+                {
+                    _repository.AddSpot(newSpot);
+                }
+                else
+                {
+                    _repository.UpdateSpot(newSpot);
+                }
+
+                if (await _repository.SaveChangesAsync())
+                {
+                    return Created($"api/spots/{newSpotViewModel.Name}", Mapper.Map<SpotViewModel>(newSpotViewModel));
+                }
+            }
+            return BadRequest("Failed to save changes to database");
+        }
     }
 }

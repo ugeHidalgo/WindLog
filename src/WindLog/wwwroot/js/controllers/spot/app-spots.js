@@ -6,14 +6,25 @@
             'smart-table',
             'ui-notification'
         ])
-        .config(['$routeProvider', 'NotificationProvider',
-            function ($routeProvider, NotificationProvider) {
+        .config(['$locationProvider', '$routeProvider', 'NotificationProvider',
+            function ($locationProvider, $routeProvider, NotificationProvider) {
+
+                $locationProvider.hashPrefix('!');
+                $locationProvider.html5Mode(true);
+
                 $routeProvider.
                     when('/', {
                         controller: 'spotsController',
                         controllerAs: 'vm',
                         templateUrl: '/views/spot/spotsView.html'
                     }).
+
+                    when('/editor/:spotId', {
+                        controller: 'SpotsEditorController',
+                        controllerAs: 'vm',
+                        templateUrl: '/views/spot/spotsEditorView.html'
+                    }).
+
                     otherwise({
                         redirectTo: '/'
                     });

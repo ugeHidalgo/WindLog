@@ -4,6 +4,7 @@
 @section Scripts {
     <script src="~/lib/angular/angular.min.js"></script>
     <script src="~/lib/angular-route/angular-route.min.js"></script>
+    <script src="~/js/support/commonMethods.js"></script>
     <script src="~/js/controllers/simpleControls.js"></script>
     <script src="~/lib/angular-smart-table/dist/smart-table.min.js"></script> 
     
@@ -12,8 +13,11 @@
        
     <script src="~/js/controllers/spot/app-spots.js"></script>
     <script src="~/js/controllers/spot/spotsController.js"></script>
+    <script src="~/js/controllers/spot/spotsEditorController.js"></script>
 }
-
+<head>
+    <base href="@Url.Content("~/App/Spots/")" />
+</head>
 <h3 class="text-center">Spots</h3>
 <div ng-app="app-spots">
 
