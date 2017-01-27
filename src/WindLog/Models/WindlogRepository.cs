@@ -115,6 +115,17 @@ namespace WindLog.Models
                 .FirstOrDefault(x => x.UserName == userName && x.Id == id);
         }
 
+        public void AddSpot(Spot newSpot)
+        {
+            newSpot.Created = DateTime.Now;
+            _context.Add(newSpot);
+        }
+
+        public void UpdateSpot(Spot newSpot)
+        {
+            _context.Update(newSpot);
+        }
+
         #endregion
 
         #region Common
@@ -122,7 +133,7 @@ namespace WindLog.Models
         public async Task<bool> SaveChangesAsync()
         {
             return (await _context.SaveChangesAsync()) > 0;
-        }
+        }       
 
         #endregion
     }

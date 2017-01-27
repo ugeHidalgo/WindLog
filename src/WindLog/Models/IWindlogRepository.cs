@@ -18,9 +18,11 @@ namespace WindLog.Models
 
         IEnumerable<Spot> GetAllSpots(string userName);
         Spot GetSpotById(int id, string userName);
+        void AddSpot(Spot newSpot);
+        void UpdateSpot(Spot newSpot);
 
         IEnumerable<Session> GetAllSessions(string userName);
 
-        Task<bool> SaveChangesAsync();                
+        Task<bool> SaveChangesAsync();
     }
 }
